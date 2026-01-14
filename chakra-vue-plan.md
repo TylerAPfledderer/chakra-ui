@@ -167,32 +167,27 @@ All implementation steps must be **deterministic and reproducible**:
 **Deterministic Practices**:
 
 1. **Explicit Dependencies**
-
    - Pin exact versions in package.json examples (use `workspace:*` for monorepo
      packages)
    - Document peer dependency version constraints
    - No "latest" or version ranges in critical dependencies
 
 2. **Clear File Paths**
-
    - Always use absolute paths from repo root in documentation
    - Example: `/home/user/chakra-ui/packages/core/system-core/src/index.ts`
    - Not: `../core/system-core` or relative paths
 
 3. **Step-by-Step Procedures**
-
    - Each task should have clear, ordered steps
    - Dependencies between tasks must be explicit
    - No ambiguous instructions like "set up as needed"
 
 4. **Testable Outputs**
-
    - Each phase must have verifiable success criteria
    - Include example test commands that should pass
    - Specify expected file outputs
 
 5. **Configuration as Code**
-
    - All configuration in version-controlled files
    - No manual setup steps that can't be reproduced
    - Package.json, tsconfig.json, etc. should be complete examples
@@ -392,6 +387,20 @@ Phase 4 & 5
 - `@chakra-ui/vue` barrel package
 - Documentation and examples
 - Migration guide
+
+**PR 9: Redundant Logic Cleanup** Branch: `feature/system-core-dedup` Scope:
+Consolidation
+
+- Sweep `@chakra-ui/react` for redundant utilities that duplicate
+  `@chakra-ui/system-core`
+- Sweep `@chakra-ui/vue` for any duplicated logic
+- Refactor internal imports to use system-core where applicable
+- Known duplicates in React: `utils/split-props.ts`, `utils/omit.ts`,
+  `utils/compact.ts`
+- Ensure behavioral parity before replacing (e.g., `compact` null handling
+  differences)
+- Update internal imports throughout both packages
+- Run full test suite to verify no regressions
 
 ### Benefits of This Approach
 
@@ -1142,13 +1151,11 @@ export const AccordionItem = defineComponent({
 **Component Categories**:
 
 1. **Ark UI-based Components** (30+ components)
-
    - Use Ark UI for behavior/accessibility
    - Wrap with Chakra styling system
    - Examples: Accordion, Dialog, Menu, Select, Slider
 
 2. **Pure Chakra Components** (20+ components)
-
    - No complex behavior needed
    - Style-only components
    - Examples: Box, Flex, Grid, Text, Heading, Badge, Card
@@ -1690,7 +1697,7 @@ pnpm add @chakra-ui/vue @ark-ui/vue
 
 ```vue
 <script setup>
-import { ChakraProvider, Button } from '@chakra-ui/vue'
+import { Button, ChakraProvider } from "@chakra-ui/vue"
 </script>
 
 <template>
@@ -1876,9 +1883,9 @@ export const customTheme = extendTheme({
 export function resolveColorModeValue<T>(
   light: T,
   dark: T,
-  colorMode: 'light' | 'dark'
+  colorMode: "light" | "dark",
 ): T {
-  return colorMode === 'light' ? light : dark
+  return colorMode === "light" ? light : dark
 }
 
 // React: @chakra-ui/react-color-mode
@@ -1934,13 +1941,11 @@ heavy runtime CSS-in-JS libraries from the start.
 **Options**:
 
 1. **Port Emotion to Vue** ❌
-
    - Emotion is React-specific
    - Adds significant bundle size
    - React is actively working to remove it
 
 2. **Use existing Vue CSS-in-JS library** ❌
-
    - Vue doesn't have a dominant CSS-in-JS solution
    - Would diverge from React implementation
    - Adds unnecessary runtime overhead
@@ -2126,31 +2131,31 @@ export interface ButtonProps extends ChakraProps {
 ```vue
 <!-- Before: Ark UI -->
 <script setup>
-import { Accordion } from '@ark-ui/vue'
+import { Accordion } from "@ark-ui/vue"
 </script>
 
 <template>
   <Accordion.Root class="my-accordion">
     <Accordion.Item class="my-item">
-      <Accordion.Trigger class="my-trigger">
-        Trigger
-      </Accordion.Trigger>
-      <Accordion.Content class="my-content">
-        Content
-      </Accordion.Content>
+      <Accordion.Trigger class="my-trigger"> Trigger </Accordion.Trigger>
+      <Accordion.Content class="my-content"> Content </Accordion.Content>
     </Accordion.Item>
   </Accordion.Root>
 </template>
 
 <style>
-.my-accordion { /* custom styles */ }
-.my-item { /* custom styles */ }
+.my-accordion {
+  /* custom styles */
+}
+.my-item {
+  /* custom styles */
+}
 /* ... */
 </style>
 
 <!-- After: Chakra UI Vue -->
 <script setup>
-import { Accordion, AccordionItem } from '@chakra-ui/vue'
+import { Accordion, AccordionItem } from "@chakra-ui/vue"
 </script>
 
 <template>
