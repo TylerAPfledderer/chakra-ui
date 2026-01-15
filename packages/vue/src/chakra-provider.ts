@@ -24,7 +24,7 @@ import {
  * @example
  * ```vue
  * <script setup>
- * import { ChakraProvider } from '@chakra-ui/vue-system'
+ * import { ChakraProvider } from '@chakra-ui/vue'
  * import { theme } from '@chakra-ui/theme'
  * </script>
  *

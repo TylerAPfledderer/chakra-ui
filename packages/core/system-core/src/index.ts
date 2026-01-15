@@ -3,7 +3,7 @@
  *
  * Framework-agnostic core utilities for Chakra UI's styling system.
  * This package provides the foundation that both @chakra-ui/react and
- * @chakra-ui/vue-system build upon.
+ * @chakra-ui/vue build upon.
  *
  * @packageDocumentation
  */

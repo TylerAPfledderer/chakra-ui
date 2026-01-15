@@ -642,25 +642,6 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.10.1)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.29.2)(terser@5.43.1)(tsx@4.20.6)(yaml@2.8.1)
 
-  packages/core/vue-system:
-    dependencies:
-      '@chakra-ui/system-core':
-        specifier: workspace:*
-        version: link:../system-core
-    devDependencies:
-      '@vue/test-utils':
-        specifier: ^2.4.6
-        version: 2.4.6
-      jsdom:
-        specifier: ^26.1.0
-        version: 26.1.0
-      vitest:
-        specifier: ^3.2.4
-        version: 3.2.4(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.10.1)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.29.2)(terser@5.43.1)(tsx@4.20.6)(yaml@2.8.1)
-      vue:
-        specifier: ^3.5.13
-        version: 3.5.26(typescript@5.9.3)
-
   packages/panda-preset:
     dependencies:
       '@pandacss/types':
@@ -716,6 +697,25 @@ importers:
       react-frame-component:
         specifier: 5.2.7
         version: 5.2.7(prop-types@15.8.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+
+  packages/vue:
+    dependencies:
+      '@chakra-ui/system-core':
+        specifier: workspace:*
+        version: link:../core/system-core
+    devDependencies:
+      '@vue/test-utils':
+        specifier: ^2.4.6
+        version: 2.4.6
+      jsdom:
+        specifier: ^26.1.0
+        version: 26.1.0
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.4(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.10.1)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.29.2)(terser@5.43.1)(tsx@4.20.6)(yaml@2.8.1)
+      vue:
+        specifier: ^3.5.13
+        version: 3.5.26(typescript@5.9.3)
 
   sandbox/iframe:
     dependencies:
@@ -15726,7 +15726,7 @@ snapshots:
       '@vue/compiler-ssr': 3.5.22
       '@vue/shared': 3.5.22
       estree-walker: 2.0.2
-      magic-string: 0.30.19
+      magic-string: 0.30.21
       postcss: 8.5.6
       source-map-js: 1.2.1
 

@@ -133,7 +133,7 @@ export function chakra(element: string | DefineComponent<any, any, any>) {
  * @example
  * ```vue
  * <script setup>
- * import { chakra } from '@chakra-ui/vue-system'
+ * import { chakra } from '@chakra-ui/vue'
  * </script>
  *
  * <template>

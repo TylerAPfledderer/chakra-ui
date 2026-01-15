@@ -1,5 +1,5 @@
 /**
- * Type definitions for @chakra-ui/vue-system.
+ * Type definitions for @chakra-ui/vue.
  * These types are specific to the Vue implementation.
  */
 import type {

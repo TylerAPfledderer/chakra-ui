@@ -109,7 +109,7 @@ export function chakra<T extends ElementType>(
  * @example
  * ```vue
  * <script setup>
- * import { styledFactory as chakra } from '@chakra-ui/vue-system'
+ * import { styledFactory as chakra } from '@chakra-ui/vue'
  *
  * const Box = chakra.div
  * const Flex = chakra.div // with flex styles applied via sx

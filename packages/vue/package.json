@@ -1,7 +1,7 @@
 {
-  "name": "@chakra-ui/vue-system",
+  "name": "@chakra-ui/vue",
   "version": "0.0.0",
-  "description": "Vue 3 system utilities for Chakra UI - providers, composables, and styling",
+  "description": "Vue 3 component library for Chakra UI - providers, composables, and styling",
   "type": "module",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",
@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/chakra-ui/chakra-ui",
-    "directory": "packages/core/vue-system"
+    "directory": "packages/vue"
   },
   "keywords": [
     "chakra-ui",
@@ -30,10 +30,10 @@
     "composables"
   ],
   "scripts": {
-    "prepack": "tsx ../../../scripts/conditions.ts",
-    "postpack": "tsx ../../../scripts/conditions.ts --restore",
-    "build:fast": "tsx ../../../scripts/build/main.ts",
-    "build": "tsx ../../../scripts/build/main.ts --dts",
+    "prepack": "tsx ../../scripts/conditions.ts",
+    "postpack": "tsx ../../scripts/conditions.ts --restore",
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",

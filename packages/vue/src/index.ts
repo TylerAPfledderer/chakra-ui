@@ -1,7 +1,7 @@
 /**
- * @chakra-ui/vue-system
+ * @chakra-ui/vue
  *
- * Vue 3 system utilities for Chakra UI.
+ * Vue 3 component library for Chakra UI.
  * This package provides the foundation for building Chakra UI components in Vue,
  * including providers, composables, and styling utilities.
  *
