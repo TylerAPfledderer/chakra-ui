@@ -1,19 +1,5 @@
-export * from "./attr"
-export * from "./call-all"
-export * from "./clone"
-export * from "./compact"
-export * from "./create-props"
-export * from "./cx"
-export * from "./entries"
-export * from "./flatten"
-export * from "./interop"
-export * from "./is"
-export * from "./memo"
-export * from "./merge"
-export * from "./omit"
+// Re-export all framework-agnostic utilities from system-core
+export * from "@chakra-ui/system-core/utils"
+
+// React-specific utilities
 export * from "./ref"
-export * from "./split-props"
-export * from "./types"
-export * from "./uniq"
-export * from "./unit"
-export * from "./walk-object"
