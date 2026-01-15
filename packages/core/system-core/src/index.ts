@@ -61,3 +61,45 @@ export {
   resolveSlotStyleConfig,
   resolveStyleConfig,
 } from "./resolve-style-config"
+
+// Utility functions (avoiding duplicates with prop-utils)
+export {
+  // Attribute helpers
+  dataAttr,
+  // Function utilities
+  callAll,
+  // Object utilities
+  clone,
+  createProps,
+  flatten,
+  interopDefault,
+  mapEntries,
+  mergeWith,
+  walkObject,
+  mapObject,
+  // String utilities
+  cx,
+  uniq,
+  // Type guards
+  isObject,
+  isCssVar,
+  isString,
+  isFunction,
+  isCssUnit,
+  // Memoization
+  memo,
+} from "./utils"
+
+// Utility types
+export type {
+  AnyFunction,
+  DistributiveOmit,
+  DistributiveUnion,
+  Pretty,
+  MappedObject,
+  WalkObjectOptions,
+  WalkObjectStopFn,
+} from "./utils"
+
+// Styled-system exports
+export * from "./styled-system"
