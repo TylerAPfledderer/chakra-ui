@@ -3,7 +3,7 @@
  *
  * Framework-agnostic core utilities for Chakra UI's styling system.
  * This package provides the foundation that both @chakra-ui/react and
- * @chakra-ui/vue-system build upon.
+ * @chakra-ui/vue build upon.
  *
  * @packageDocumentation
  */
@@ -61,3 +61,45 @@ export {
   resolveSlotStyleConfig,
   resolveStyleConfig,
 } from "./resolve-style-config"
+
+// Utility functions (avoiding duplicates with prop-utils)
+export {
+  // Attribute helpers
+  dataAttr,
+  // Function utilities
+  callAll,
+  // Object utilities
+  clone,
+  createProps,
+  flatten,
+  interopDefault,
+  mapEntries,
+  mergeWith,
+  walkObject,
+  mapObject,
+  // String utilities
+  cx,
+  uniq,
+  // Type guards
+  isObject,
+  isCssVar,
+  isString,
+  isFunction,
+  isCssUnit,
+  // Memoization
+  memo,
+} from "./utils"
+
+// Utility types
+export type {
+  AnyFunction,
+  DistributiveOmit,
+  DistributiveUnion,
+  Pretty,
+  MappedObject,
+  WalkObjectOptions,
+  WalkObjectStopFn,
+} from "./utils"
+
+// Styled-system exports
+export * from "./styled-system"

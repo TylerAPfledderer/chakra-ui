@@ -38,7 +38,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@pandacss/is-valid-prop": "^1.8.1",
+    "csstype": "^3.1.3"
+  },
   "devDependencies": {
     "vitest": "^3.2.4"
   },
@@ -52,6 +55,28 @@
       "require": {
         "types": "./dist/types/index.d.ts",
         "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./utils": {
+      "dev": "./src/utils/index.ts",
+      "import": {
+        "types": "./dist/types/utils/index.d.ts",
+        "default": "./dist/esm/utils/index.js"
+      },
+      "require": {
+        "types": "./dist/types/utils/index.d.ts",
+        "default": "./dist/cjs/utils/index.cjs"
+      }
+    },
+    "./styled-system": {
+      "dev": "./src/styled-system/index.ts",
+      "import": {
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/esm/styled-system/index.js"
+      },
+      "require": {
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/cjs/styled-system/index.cjs"
       }
     },
     "./package.json": "./package.json"
