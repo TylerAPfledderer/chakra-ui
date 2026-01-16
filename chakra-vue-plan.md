@@ -52,9 +52,9 @@ git log --oneline -5  # Should show latest commits from origin
 | ---------------------- | -------------- | ---------------------- |
 | 1.1 System Core        | ✅ COMPLETE    | Merged                 |
 | 1.3 Vue Styled System  | ✅ COMPLETE    | PR #4 merged           |
-| **ESLint Config**      | **🔜 CURRENT** | **Execute next phase** |
-| 1.4 Theme Enhancement  | ⬜ PENDING     |                        |
-| 1.5 Vue Utilities      | ⬜ PENDING     |                        |
+| ESLint Config          | ✅ COMPLETE    | PR #5 merged           |
+| 1.4 Vue Anatomy        | ✅ COMPLETE    | PR #6 created          |
+| **1.5 Vue Utilities**  | **🔜 CURRENT** | **Execute next phase** |
 | 2.0 Ark UI Integration | ⬜ PENDING     |                        |
 | 3.x Components         | ⬜ PENDING     |                        |
 
@@ -72,15 +72,15 @@ git log --oneline -5  # Should show latest commits from origin
    **ASK USER FOR APPROVAL** of all changes made in that phase. Do not commit or
    push until user approves.
 
-**Current Phase:** ESLint Configuration **Current Step:** Step 1 (Sync and
-Create Branch)
+**Current Phase:** 1.5 Vue Utilities **Current Step:** Step 1 (Sync and Create
+Branch)
 
 ---
 
 ## PHASE: ESLint Configuration
 
-**Status:** 🔜 IMMEDIATE NEXT STEP **Branch Name:** `feature/vue-eslint-config`
-**PR Target:** `fork` remote → `feature/chakra-ui-vue-3` branch
+**Status:** ✅ COMPLETE **Branch Name:** `feature/vue-eslint-config` **PR:**
+https://github.com/TylerAPfledderer/chakra-ui/pull/5
 
 ### Problem Statement
 
@@ -90,159 +90,87 @@ uses inline disable comments which don't scale.
 
 ### Steps
 
-- [ ] **Step 1: Sync and Create Branch**
-
-  ```bash
-  # Run sync commands from "IMPORTANT: Sync Before Each Phase" section above
-  # Then create the phase branch:
-  git checkout feature/chakra-ui-vue-3
-  git checkout -b feature/vue-eslint-config
-  ```
-
-- [ ] **Step 2: Install Dependencies**
-
-  ```bash
-  pnpm add -D eslint-plugin-vue -w
-  ```
-
-- [ ] **Step 3: Modify ESLint Configuration**
-
-  **File:**
-  `/home/tylerapfledderer/sites/chakra-org/chakra-ui/eslint.config.mjs`
-
-  **Action 1:** Add import at top of file:
-
-  ```javascript
-  import pluginVue from "eslint-plugin-vue"
-  ```
-
-  **Action 2:** Add new config block AFTER the existing main config block
-  (before the closing `]` of `defineConfig`):
-
-  ```javascript
-  // Vue package overrides - disable React rules, enable Vue rules
-  {
-    files: ["packages/vue/**/*.ts", "packages/vue/**/*.vue"],
-    plugins: {
-      vue: pluginVue,
-    },
-    rules: {
-      // Disable React-specific rules for Vue package
-      "react-hooks/rules-of-hooks": "off",
-      "react-hooks/exhaustive-deps": "off",
-      "react/jsx-filename-extension": "off",
-      "react/sort-prop-types": "off",
-      // Enable Vue recommended rules
-      ...pluginVue.configs["flat/recommended"].rules,
-    },
-  },
-  ```
-
-- [ ] **Step 4: Remove Inline ESLint Disables**
-
-  **File:**
-  `/home/tylerapfledderer/sites/chakra-org/chakra-ui/packages/vue/src/styled-system/factory.ts`
-
-  **Action:** Remove this line from the top of the file:
-
-  ```javascript
-  /* eslint-disable react-hooks/rules-of-hooks */
-  ```
-
-- [ ] **Step 5: Verify Changes**
-
-  ```bash
-  pnpm lint                              # Should pass with no errors
-  pnpm --filter @chakra-ui/vue build     # Should succeed
-  pnpm --filter @chakra-ui/vue typecheck # Should succeed
-  ```
-
-- [ ] **Step 6: Get User Approval** ⚠️
-
-  **ASK USER:** "Phase complete. Please review the changes to
-  `eslint.config.mjs` and `packages/vue/src/styled-system/factory.ts`. Ready to
-  commit and create PR?"
-
-- [ ] **Step 7: Commit and Create PR** _(only after user approval)_
-
-  ```bash
-  git add -A
-  git commit -m "feat(vue): configure eslint with Vue plugin and disable React rules
-
-  - Add eslint-plugin-vue for Vue-specific linting
-  - Disable react-hooks rules for packages/vue/**
-  - Remove inline eslint-disable comments from Vue files"
-
-  git push -u fork feature/vue-eslint-config
-
-  gh pr create \
-    --repo TylerAPfledderer/chakra-ui \
-    --base feature/chakra-ui-vue-3 \
-    --head feature/vue-eslint-config \
-    --title "feat(vue): configure eslint for Vue package" \
-    --body "## Summary
-  - Adds eslint-plugin-vue for Vue-specific linting rules
-  - Adds ESLint config override for packages/vue to disable React-specific rules
-  - Removes inline eslint-disable comments
-
-  ## Test Plan
-  - [x] pnpm lint passes
-  - [x] pnpm --filter @chakra-ui/vue build passes
-  - [x] pnpm --filter @chakra-ui/vue typecheck passes"
-  ```
+- [x] **Step 1: Sync and Create Branch**
+- [x] **Step 2: Install Dependencies** (`eslint-plugin-vue` ^10.7.0)
+- [x] **Step 3: Modify ESLint Configuration**
+- [x] **Step 4: Remove Inline ESLint Disables**
+- [x] **Step 5: Verify Changes**
+- [x] **Step 6: Get User Approval**
+- [x] **Step 7: Commit and Create PR**
 
 ### Success Criteria
 
-- [ ] `pnpm lint` exits with code 0
-- [ ] `pnpm --filter @chakra-ui/vue build` succeeds
-- [ ] `pnpm --filter @chakra-ui/vue typecheck` succeeds
-- [ ] PR created on fork remote
+- [x] `pnpm eslint packages/vue` exits with code 0
+- [x] `pnpm --filter @chakra-ui/vue build` succeeds
+- [x] `pnpm --filter @chakra-ui/vue typecheck` succeeds
+- [x] PR created on fork remote
 
 ---
 
-## PHASE 1.4: Theme Enhancement
+## PHASE 1.4: Vue Anatomy
 
-**Status:** ⬜ PENDING **Branch Name:** `feature/vue-theme-enhancement`
-**Depends On:** ESLint Config phase complete
+**Status:** ✅ COMPLETE **Branch Name:** `feature/vue-theme-enhancement` **PR:**
+https://github.com/TylerAPfledderer/chakra-ui/pull/6
 
 ### Objective
 
-Verify theme package is framework-agnostic and works with Vue.
+Create Vue-specific anatomy file for component slot definitions, enabling Vue
+components to use Chakra's slot recipe system.
 
-### Step 1: Sync and Create Branch
+### What Was Done
 
-```bash
-# First, run the sync commands from "IMPORTANT: Sync Before Each Phase" section above
+1. Added `@ark-ui/vue` as a dependency in `packages/vue/package.json`
+2. Created `packages/vue/src/anatomy.ts` with all Chakra component anatomies
+   importing from `@ark-ui/vue/anatomy` instead of `@ark-ui/react`
 
-# Then create the phase branch
-git checkout feature/chakra-ui-vue-3
-git checkout -b feature/vue-theme-enhancement
-```
+### Audit Findings
 
-### Step 2: Audit Theme Package
+The theme package (`packages/react/src/theme`) was audited:
 
-**Directory to Audit:**
-`/home/tylerapfledderer/sites/chakra-org/chakra-ui/packages/react/src/theme`
-
-**Check for:**
-
-- React hooks usage (`useColorMode`, `useTheme`, etc.)
-- React-specific imports (`react`, `@emotion/react`)
-- JSX syntax
-
-**Expected Result:** Theme should be pure JavaScript objects with no React
-dependencies.
-
-### Step 3: Document Findings
-
-Create or update documentation noting any React-specific code found and whether
-it needs refactoring.
+- **Tokens** (colors, spacing, fonts, etc.) - ✅ Framework-agnostic (pure JS
+  objects)
+- **Recipes** - ⚠️ Import from `../../anatomy` which uses `@ark-ui/react`
+- **Slot Recipes** - ⚠️ Use `anatomy.keys()` for slot names
 
 ### Success Criteria
 
-- [ ] Theme audit complete
-- [ ] Documentation updated
-- [ ] Any React-specific code identified and noted
+- [x] `@ark-ui/vue` added as dependency
+- [x] Vue anatomy file created with all component anatomies
+- [x] `pnpm --filter @chakra-ui/vue build` succeeds
+- [x] `pnpm --filter @chakra-ui/vue typecheck` succeeds
+- [x] PR created on fork remote
+
+---
+
+## FUTURE REFACTORING: Shared Theme Package
+
+> **Note:** This is tracked for future consideration, not immediate action.
+
+### Problem
+
+The theme recipes in `packages/react/src/theme` are nearly framework-agnostic,
+but they import anatomy from `../../anatomy` which pulls from `@ark-ui/react`.
+This means Vue cannot directly reuse React's theme recipes.
+
+### Current Workaround
+
+Vue has its own `anatomy.ts` that imports from `@ark-ui/vue`. Theme recipes
+would need to be duplicated or imported with path aliases.
+
+### Potential Solutions
+
+1. **Extract theme to `@chakra-ui/theme` package** - Framework-agnostic theme
+   that accepts anatomy as a parameter
+2. **Move anatomy-dependent code** - Have recipes accept slot arrays directly
+   instead of calling `anatomy.keys()`
+3. **Shared theme with framework adapters** - Theme exports raw definitions,
+   each framework wraps with its anatomy
+
+### Benefits of Refactoring
+
+- Single source of truth for theme recipes
+- Easier maintenance when updating styles
+- Consistent theming across React/Vue/Solid
 
 ---
 
@@ -299,35 +227,12 @@ On:** Phase 1.5 complete
 
 Establish integration pattern between Ark UI Vue and Chakra UI styling.
 
-### Step 1: Add Ark UI Dependency
+### Prerequisites (Already Complete)
 
-**File:**
-`/home/tylerapfledderer/sites/chakra-org/chakra-ui/packages/vue/package.json`
+- ✅ `@ark-ui/vue` added as dependency (done in Phase 1.4)
+- ✅ Vue anatomy file created (done in Phase 1.4)
 
-**Action:** Add to `peerDependencies`:
-
-```json
-"peerDependencies": {
-  "vue": "^3.3.0",
-  "@ark-ui/vue": "^4.0.0"
-}
-```
-
-**Action:** Add to `devDependencies`:
-
-```json
-"devDependencies": {
-  "@ark-ui/vue": "^4.0.0"
-}
-```
-
-Then run:
-
-```bash
-pnpm install
-```
-
-### Step 2: Create Integration Prototypes
+### Step 1: Create Integration Prototypes
 
 **Create 3 prototype components to establish the integration pattern:**
 
@@ -540,6 +445,8 @@ pnpm --filter @chakra-ui/vue build
 - Re-exports from `@chakra-ui/system-core`
 - TypeScript definitions
 - Build pipeline (ESM/CJS/types)
+- Vue anatomy file (all Chakra component slot definitions)
+- `@ark-ui/vue` dependency
 
 ### NOT Implemented ❌
 
@@ -548,4 +455,3 @@ pnpm --filter @chakra-ui/vue build
 - Example applications
 - Documentation
 - Color mode toggle
-- Ark UI integration
