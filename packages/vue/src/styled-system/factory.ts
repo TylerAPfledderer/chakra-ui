@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import type { Dict, SystemStyleObject } from "@chakra-ui/system-core"
 import {
   type DefineComponent,
