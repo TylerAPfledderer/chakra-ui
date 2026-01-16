@@ -34,7 +34,10 @@ git checkout feature/chakra-ui-vue-3
 git merge main
 git push fork feature/chakra-ui-vue-3
 
-# Step 4: Verify sync is complete
+# Step 4: Install dependencies (ensures lock-file and node_modules are up-to-date)
+pnpm install
+
+# Step 5: Verify sync is complete
 git log --oneline -5  # Should show latest commits from origin
 ```
 
@@ -43,6 +46,8 @@ git log --oneline -5  # Should show latest commits from origin
 - Keeps fork in sync with upstream chakra-ui/chakra-ui
 - Prevents merge conflicts when eventually submitting PR to upstream
 - Ensures you're building on the latest codebase
+- Running `pnpm install` ensures lock-file and node_modules stay in sync with
+  any dependency changes from upstream
 
 ---
 
@@ -390,7 +395,10 @@ git checkout feature/chakra-ui-vue-3
 git merge main
 git push fork feature/chakra-ui-vue-3
 
-# Step 3: Create phase branch
+# Step 3: Install dependencies (ensures lock-file and node_modules are up-to-date)
+pnpm install
+
+# Step 4: Create phase branch
 git checkout -b feature/vue-<phase-name>
 ```
 
