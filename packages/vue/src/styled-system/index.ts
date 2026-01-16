@@ -9,7 +9,13 @@
  */
 
 // Provider components
-export { VueChakraProvider, SystemContextKey } from "./provider"
+export {
+  ChakraProvider,
+  ChakraContextKey,
+  VueChakraProvider,
+  SystemContextKey,
+} from "./provider"
+export type { ChakraProviderProps } from "./provider"
 
 // Core composables
 export { useSystem } from "./use-system"

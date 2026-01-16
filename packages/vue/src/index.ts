@@ -57,42 +57,15 @@ export type {
   ThemingProps,
 } from "@chakra-ui/system-core"
 
-// Provider components
-export { ChakraProvider, ChakraBaseProvider } from "./chakra-provider"
-
-// Context composables
-export {
-  useChakra,
-  useTheme,
-  useColorMode,
-  useColorModeValue,
-  useToken,
-} from "./use-chakra"
-
-// Style config composables
-export {
-  useStyleConfig,
-  useMultiStyleConfig,
-  createStylesContext,
-} from "./use-style-config"
+// Provider component
+export { ChakraProvider, ChakraContextKey } from "./styled-system/provider"
+export type { ChakraProviderProps } from "./styled-system/provider"
 
 // Factory utilities
 export { chakra, styledFactory, styled, forwardRef } from "./chakra-factory"
 
 // Types
-export type {
-  ChakraContext,
-  ChakraProps,
-  ChakraProviderProps,
-  ColorMode,
-  ColorModeContext,
-  StyleConfigResult,
-  Theme,
-  UseStyleConfigOptions,
-} from "./types"
-
-// Injection keys (for advanced usage)
-export { ChakraContextKey, ThemeKey, ColorModeKey } from "./types"
+export type { ChakraProps } from "./types"
 
 // Styled-system (new Vue implementations)
 export {

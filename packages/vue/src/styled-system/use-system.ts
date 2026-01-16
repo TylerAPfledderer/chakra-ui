@@ -4,10 +4,10 @@ import { SystemContextKey } from "./provider"
 
 /**
  * Composable to access the Chakra system context.
- * Must be used within a VueChakraProvider component.
+ * Must be used within a ChakraProvider component.
  *
  * @returns The SystemContext from system-core
- * @throws Error if used outside of VueChakraProvider
+ * @throws Error if used outside of ChakraProvider
  *
  * @example
  * ```vue
@@ -22,8 +22,8 @@ export function useSystem(): SystemContext {
 
   if (!system) {
     throw new Error(
-      "[Chakra UI] useSystem must be used within a VueChakraProvider. " +
-        'Make sure to wrap your app with <VueChakraProvider :system="system">.',
+      "[Chakra UI] useSystem must be used within a ChakraProvider. " +
+        'Make sure to wrap your app with <ChakraProvider :value="system">.',
     )
   }
 

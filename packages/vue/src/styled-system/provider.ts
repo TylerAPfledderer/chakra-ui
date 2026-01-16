@@ -1,55 +1,56 @@
 import type { SystemContext } from "@chakra-ui/system-core"
-import { type PropType, defineComponent, h, provide } from "vue"
+import type { InjectionKey, PropType } from "vue"
+import { defineComponent, provide } from "vue"
 
 /**
  * Injection key for the Chakra system context
  */
-export const SystemContextKey = Symbol("chakra-system")
+export const ChakraContextKey: InjectionKey<SystemContext> =
+  Symbol("ChakraContext")
 
 /**
- * VueChakraProvider component that provides the system context to all child components.
- * This is the main entry point for using Chakra UI's styled-system in Vue.
+ * Alias for backwards compatibility
  */
-export const VueChakraProvider = defineComponent({
-  name: "VueChakraProvider",
+export const SystemContextKey = ChakraContextKey
+
+export interface ChakraProviderProps {
+  value: SystemContext
+}
+
+/**
+ * Vue provider component for Chakra UI.
+ * Provides the SystemContext to all descendant components.
+ * Styling is handled by Panda CSS.
+ *
+ * @example
+ * ```vue
+ * <template>
+ *   <ChakraProvider :value="system">
+ *     <App />
+ *   </ChakraProvider>
+ * </template>
+ *
+ * <script setup>
+ * import { ChakraProvider } from '@chakra-ui/vue'
+ * import { system } from './theme'
+ * </script>
+ * ```
+ */
+export const ChakraProvider = defineComponent({
+  name: "ChakraProvider",
   props: {
-    system: {
+    value: {
       type: Object as PropType<SystemContext>,
       required: true,
     },
   },
   setup(props, { slots }) {
-    provide(SystemContextKey, props.system)
-
-    return () => {
-      // Inject global styles via <style> tag
-      const globalCss = props.system.getGlobalCss()
-      const tokenCss = props.system.getTokenCss()
-      const preflightCss = props.system.getPreflightCss()
-
-      // Serialize CSS for injection
-      const serializeCss = (obj: Record<string, any>, indent = 0): string => {
-        let css = ""
-        for (const [key, value] of Object.entries(obj)) {
-          if (typeof value === "object" && value !== null) {
-            css += `${" ".repeat(indent)}${key} {\n`
-            css += serializeCss(value, indent + 2)
-            css += `${" ".repeat(indent)}}\n`
-          } else if (value !== undefined && value !== null) {
-            css += `${" ".repeat(indent)}${key}: ${value};\n`
-          }
-        }
-        return css
-      }
-
-      const allCss = [preflightCss, tokenCss, globalCss]
-        .map((css) => serializeCss(css))
-        .join("\n")
-
-      return h("div", { class: "chakra-provider" }, [
-        h("style", { innerHTML: allCss }),
-        slots.default?.(),
-      ])
-    }
+    provide(ChakraContextKey, props.value)
+    return () => slots.default?.()
   },
 })
+
+/**
+ * Alias for backwards compatibility
+ */
+export const VueChakraProvider = ChakraProvider
