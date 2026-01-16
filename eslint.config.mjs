@@ -4,6 +4,7 @@ import js from "@eslint/js"
 import typescriptEslint from "@typescript-eslint/eslint-plugin"
 import * as tsParser from "@typescript-eslint/parser"
 import testingLibrary from "eslint-plugin-testing-library"
+import pluginVue from "eslint-plugin-vue"
 import { defineConfig, globalIgnores } from "eslint/config"
 import globals from "globals"
 import path from "node:path"
@@ -127,6 +128,22 @@ export default defineConfig([
       "prefer-object-spread": "off",
       "arrow-body-style": "off",
       "react/sort-comp": "off",
+    },
+  },
+  // Vue package overrides - disable React rules, enable Vue rules
+  {
+    files: ["packages/vue/**/*.ts", "packages/vue/**/*.vue"],
+    plugins: {
+      vue: pluginVue,
+    },
+    rules: {
+      // Disable React-specific rules for Vue package
+      "react-hooks/rules-of-hooks": "off",
+      "react-hooks/exhaustive-deps": "off",
+      "react/jsx-filename-extension": "off",
+      "react/sort-prop-types": "off",
+      // Enable Vue recommended rules
+      ...pluginVue.configs["flat/recommended"].rules,
     },
   },
 ])
