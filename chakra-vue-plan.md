@@ -53,15 +53,15 @@ git log --oneline -5  # Should show latest commits from origin
 
 ## Progress Tracker
 
-| Phase                  | Status         | Notes                  |
-| ---------------------- | -------------- | ---------------------- |
-| 1.1 System Core        | ✅ COMPLETE    | Merged                 |
-| 1.3 Vue Styled System  | ✅ COMPLETE    | PR #4 merged           |
-| ESLint Config          | ✅ COMPLETE    | PR #5 merged           |
-| 1.4 Vue Anatomy        | ✅ COMPLETE    | PR #6 created          |
-| **1.5 Vue Utilities**  | **🔜 CURRENT** | **Execute next phase** |
-| 2.0 Ark UI Integration | ⬜ PENDING     |                        |
-| 3.x Components         | ⬜ PENDING     |                        |
+| Phase                      | Status         | Notes                          |
+| -------------------------- | -------------- | ------------------------------ |
+| 1.1 System Core            | ✅ COMPLETE    | Merged                         |
+| 1.3 Vue Styled System      | ✅ COMPLETE    | PR #4 merged                   |
+| ESLint Config              | ✅ COMPLETE    | PR #5 merged                   |
+| 1.4 Vue Anatomy            | ✅ COMPLETE    | PR #6 created                  |
+| 1.5 Vue Utilities          | ⏭️ SKIPPED     | Vue 3 built-ins are sufficient |
+| **2.0 Ark UI Integration** | **🔜 CURRENT** | **Execute next phase**         |
+| 3.x Components             | ⬜ PENDING     |                                |
 
 ---
 
@@ -77,8 +77,8 @@ git log --oneline -5  # Should show latest commits from origin
    **ASK USER FOR APPROVAL** of all changes made in that phase. Do not commit or
    push until user approves.
 
-**Current Phase:** 1.5 Vue Utilities **Current Step:** Step 1 (Sync and Create
-Branch)
+**Current Phase:** 2.0 Ark UI Integration **Current Step:** Step 1 (Sync and
+Create Branch)
 
 ---
 
@@ -181,52 +181,28 @@ would need to be duplicated or imported with path aliases.
 
 ## PHASE 1.5: Vue Utilities
 
-**Status:** ⬜ PENDING **Branch Name:** `feature/vue-utilities` **Depends On:**
-Phase 1.4 complete
+**Status:** ⏭️ SKIPPED **Branch Name:** `feature/vue-utilities`
 
-### Objective
+### Decision
 
-Add Vue-specific utility functions for component development.
+This phase was skipped because Vue 3 provides sufficient built-in functionality:
 
-### Files to Create
+- **Ref forwarding**: Vue's `defineExpose` handles this natively
+- **Slot utilities**: Vue's native `<slot>` with fallback content, `useSlots()`,
+  and named slots are sufficient
+- **v-model helpers**: Vue 3.4+ has `defineModel()` macro; earlier versions use
+  `defineProps` + `defineEmits` pattern
 
-**File 1:**
-`/home/tylerapfledderer/sites/chakra-org/chakra-ui/packages/vue/src/utils/forward-ref.ts`
-
-- Ref forwarding utilities for Vue components
-- Pattern: expose ref via `defineExpose`
-
-**File 2:**
-`/home/tylerapfledderer/sites/chakra-org/chakra-ui/packages/vue/src/utils/slots.ts`
-
-- Slot rendering utilities
-- Default slot fallbacks
-- Named slot helpers
-
-**File 3:**
-`/home/tylerapfledderer/sites/chakra-org/chakra-ui/packages/vue/src/utils/model.ts`
-
-- v-model integration helpers
-- `defineModel` utilities
-
-**File 4:**
-`/home/tylerapfledderer/sites/chakra-org/chakra-ui/packages/vue/src/utils/index.ts`
-
-- Barrel export for all utilities
-
-### Success Criteria
-
-- [ ] All utility files created
-- [ ] Utilities exported from package index
-- [ ] `pnpm --filter @chakra-ui/vue build` succeeds
-- [ ] `pnpm --filter @chakra-ui/vue typecheck` succeeds
+No custom wrapper utilities are needed. The system-core package already provides
+framework-agnostic utilities (cx, compact, omit, etc.) that are re-exported from
+the Vue package's index.
 
 ---
 
 ## PHASE 2.0: Ark UI Integration
 
 **Status:** ⬜ PENDING **Branch Name:** `feature/vue-ark-integration` **Depends
-On:** Phase 1.5 complete
+On:** Phase 1.4 complete (1.5 skipped)
 
 ### Objective
 
