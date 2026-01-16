@@ -39,6 +39,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@ark-ui/vue": "^5.30.0",
     "@chakra-ui/system-core": "workspace:*"
   },
   "peerDependencies": {
