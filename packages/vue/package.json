@@ -35,17 +35,22 @@
     "build:fast": "tsx ../../scripts/build/main.ts",
     "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
-    "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit"
+    "clean": "rimraf dist .turbo styled-system",
+    "typecheck": "tsc --noEmit",
+    "panda": "panda codegen",
+    "panda:css": "panda cssgen --outfile styled-system/styles.css"
   },
   "dependencies": {
     "@ark-ui/vue": "^5.30.0",
+    "@chakra-ui/panda-preset": "workspace:*",
     "@chakra-ui/system-core": "workspace:*"
   },
   "peerDependencies": {
+    "@pandacss/dev": ">=1.0.0",
     "vue": "^3.3.0"
   },
   "devDependencies": {
+    "@pandacss/dev": "^1.8.1",
     "vue": "^3.5.13"
   },
   "exports": {
