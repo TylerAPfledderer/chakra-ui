@@ -85,6 +85,9 @@ export {
   styledFactory as styledFactoryStyled,
   styled as styledStyled,
   forwardRef as forwardRefStyled,
+  // System creation
+  createSystem,
+  isValidSystem,
   // Styled-system utilities from system-core
   EMPTY_OBJECT,
   EMPTY_ARRAY,
@@ -125,6 +128,7 @@ export type {
   UseSlotRecipeOptions,
   // System types
   SystemContext,
+  SystemConfig,
   RecipeVariantRecord,
   RecipeRuntimeFn,
   RecipeDefinition,

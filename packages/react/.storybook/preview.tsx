@@ -1,12 +1,9 @@
 import { withThemeByClassName } from "@storybook/addon-themes"
 import type { Preview, ReactRenderer } from "@storybook/react-vite"
 import React from "react"
-import { ColorModeProvider } from "../apps/compositions/src/ui/color-mode"
-import {
-  ChakraProvider,
-  createSystem,
-  defaultConfig,
-} from "../packages/react/src"
+import { sharedParameters } from "../../../.storybook/shared"
+import { ColorModeProvider } from "../../../apps/compositions/src/ui/color-mode"
+import { ChakraProvider, createSystem, defaultConfig } from "../src"
 
 const system = createSystem(defaultConfig, {
   theme: {
@@ -21,22 +18,7 @@ const system = createSystem(defaultConfig, {
 })
 
 const preview: Preview = {
-  parameters: {
-    options: {
-      storySort: {
-        method: "alphabetical",
-        order: [
-          "Layout",
-          "Typography",
-          "Components",
-          "Charts",
-          "Rich Text Editor",
-        ],
-      },
-    },
-    actions: { disable: true },
-    controls: { disable: true },
-  },
+  parameters: sharedParameters,
   decorators: [
     withThemeByClassName<ReactRenderer>({
       defaultTheme: "light",
