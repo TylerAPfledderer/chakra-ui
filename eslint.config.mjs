@@ -25,6 +25,8 @@ export default defineConfig([
     "**/coverage",
     "**/.next",
     "**/build",
+    "**/.storybook",
+    "**/__stories__",
   ]),
   {
     extends: fixupConfigRules(
