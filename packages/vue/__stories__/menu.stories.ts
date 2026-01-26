@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-import { h, ref } from "vue"
+import { defineComponent, h, ref } from "vue"
 
 // Placeholder: Component will be imported once merged from feature/vue-ark-integration
 // import { Menu } from "../src"
 
 // Placeholder components for demonstration
-const MenuRoot = {
+const MenuRoot = defineComponent({
   name: "MenuRoot",
-  setup(_props: any, { slots }: any) {
+  setup(_, { slots }) {
     const isOpen = ref(false)
     return () =>
       h(
@@ -21,11 +21,11 @@ const MenuRoot = {
         }),
       )
   },
-}
+})
 
-const MenuTrigger = {
+const MenuTrigger = defineComponent({
   name: "MenuTrigger",
-  setup(_props: any, { slots }: any) {
+  setup(_, { slots }) {
     return () =>
       h(
         "button",
@@ -41,11 +41,11 @@ const MenuTrigger = {
         slots.default?.() ?? "Open Menu",
       )
   },
-}
+})
 
-const MenuContent = {
+const MenuContent = defineComponent({
   name: "MenuContent",
-  setup(_props: any, { slots }: any) {
+  setup(_, { slots }) {
     return () =>
       h(
         "div",
@@ -66,14 +66,14 @@ const MenuContent = {
         slots.default?.(),
       )
   },
-}
+})
 
-const MenuItem = {
+const MenuItem = defineComponent({
   name: "MenuItem",
   props: {
     value: { type: String },
   },
-  setup(_props: any, { slots }: any) {
+  setup(_, { slots }) {
     return () =>
       h(
         "div",
@@ -87,7 +87,7 @@ const MenuItem = {
         slots.default?.(),
       )
   },
-}
+})
 
 const Menu = {
   Root: MenuRoot,
@@ -96,11 +96,11 @@ const Menu = {
   Item: MenuItem,
 }
 
-const meta: Meta<typeof MenuRoot> = {
+const meta = {
   title: "Components / Menu",
   component: MenuRoot,
   tags: ["autodocs"],
-}
+} satisfies Meta<typeof MenuRoot>
 
 export default meta
 type Story = StoryObj<typeof meta>

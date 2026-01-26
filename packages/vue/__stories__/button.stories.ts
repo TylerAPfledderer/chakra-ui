@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-import { h } from "vue"
+import { defineComponent, h } from "vue"
 
 // Placeholder: Component will be imported once merged from feature/vue-ark-integration
 // import { Button } from "../src"
 
 // Placeholder component for demonstration
-const Button = {
+const Button = defineComponent({
   name: "Button",
   props: {
     variant: { type: String, default: "solid" },
     size: { type: String, default: "md" },
     colorPalette: { type: String, default: "gray" },
   },
-  setup(props: any, { slots }: any) {
+  setup(_, { slots }) {
     return () =>
       h(
         "button",
@@ -27,9 +27,9 @@ const Button = {
         slots.default?.() ?? "Button",
       )
   },
-}
+})
 
-const meta: Meta<typeof Button> = {
+const meta = {
   title: "Components / Button",
   component: Button,
   tags: ["autodocs"],
@@ -47,7 +47,7 @@ const meta: Meta<typeof Button> = {
       options: ["gray", "red", "green", "blue", "teal", "purple"],
     },
   },
-}
+} satisfies Meta<typeof Button>
 
 export default meta
 type Story = StoryObj<typeof meta>

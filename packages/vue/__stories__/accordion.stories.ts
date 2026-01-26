@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-import { h, ref } from "vue"
+import { defineComponent, h, ref } from "vue"
 
 // Placeholder: Component will be imported once merged from feature/vue-ark-integration
 // import { Accordion } from "../src"
 
 // Placeholder component for demonstration
-const AccordionRoot = {
+const AccordionRoot = defineComponent({
   name: "AccordionRoot",
   props: {
     multiple: { type: Boolean, default: false },
     collapsible: { type: Boolean, default: true },
   },
-  setup(_props: any, { slots }: any) {
+  setup(_, { slots }) {
     return () =>
       h(
         "div",
@@ -25,14 +25,14 @@ const AccordionRoot = {
         slots.default?.(),
       )
   },
-}
+})
 
-const AccordionItem = {
+const AccordionItem = defineComponent({
   name: "AccordionItem",
   props: {
     value: { type: String, required: true },
   },
-  setup(_props: any, { slots }: any) {
+  setup(_, { slots }) {
     const isOpen = ref(false)
     return () =>
       h(
@@ -73,14 +73,14 @@ const AccordionItem = {
         ],
       )
   },
-}
+})
 
 const Accordion = {
   Root: AccordionRoot,
   Item: AccordionItem,
 }
 
-const meta: Meta<typeof AccordionRoot> = {
+const meta = {
   title: "Components / Accordion",
   component: AccordionRoot,
   tags: ["autodocs"],
@@ -92,7 +92,7 @@ const meta: Meta<typeof AccordionRoot> = {
       control: "boolean",
     },
   },
-}
+} satisfies Meta<typeof AccordionRoot>
 
 export default meta
 type Story = StoryObj<typeof meta>
