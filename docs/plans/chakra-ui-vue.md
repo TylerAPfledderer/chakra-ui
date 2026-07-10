@@ -64,9 +64,9 @@ depends on `@ark-ui/vue` on the same `^5.x` line react uses for `@ark-ui/react`
 ## Branch & PR strategy
 
 All work lands in the **fork** (`TylerAPfledderer/chakra-ui`). The long-lived
-integration branch **`feature/chakra-ui`** is the base for every PR. Each unit
-of work is a topic branch → PR **targeting `feature/chakra-ui`** for CI → merge
-→ next.
+integration branch **`feature/chakra-ui-vue`** is the base for every PR. Each
+unit of work is a topic branch → PR **targeting `feature/chakra-ui-vue`** for CI
+→ merge → next.
 
 ## Architecture overview
 
@@ -130,7 +130,7 @@ helper. Reuse `@pandacss/is-valid-prop` for prop-forwarding
 
 ## Execution phases
 
-### Phase 1 — Vue package foundation (PR → `feature/chakra-ui`)
+### Phase 1 — Vue package foundation (PR → `feature/chakra-ui-vue`)
 
 1. Scaffold `packages/vue` (`@chakra-ui/vue`, v `3.31.0`; changesets `fixed`)
    mirroring react's `package.json` shape (dual ESM/CJS via shared
@@ -138,7 +138,11 @@ helper. Reuse `@pandacss/is-valid-prop` for prop-forwarding
    `scripts/conditions.ts`, `exports` map for `.`, `./styled-system`, `./theme`,
    `./preset`, `./*` component subpaths, `./styles.css`) **minus all
    `@emotion/*`**. Deps: `@ark-ui/vue ^5.x`, `@chakra-ui/panda-preset`,
-   `@pandacss/dev`, `@pandacss/is-valid-prop`, `csstype`; peer `vue: ">=3.5.0"`.
+   `@pandacss/is-valid-prop`, `csstype`. `@pandacss/dev` is a peer
+   (`optional: true`) + dev dependency — mirroring how react treats
+   `@emotion/react` (peer + dev), but optional here since prebuilt components
+   need no Panda at all; only consumers using the `chakra.*` factory need it.
+   Peer `vue: ">=3.5.0"`.
 2. Mirror the agnostic engine/utils/theme into `src` (script-driven copy).
 3. Package tsconfig: override base `jsx: "react-jsx"` with
    `jsxImportSource: "vue"`.
@@ -163,6 +167,18 @@ helper. Reuse `@pandacss/is-valid-prop` for prop-forwarding
 7. **Gate:** `pnpm --filter @chakra-ui/vue build` + `typecheck` pass; Panda
    codegen emits styled-system + `styles.css`; **react build/test unaffected**.
    Changeset added.
+8. **Bundle size & performance baseline check:** the premise for dropping
+   Emotion in favor of Panda's build-time atomic CSS is smaller bundle size (no
+   runtime CSS-in-JS serializer/hasher/style-injector shipped) and faster
+   renders (precomputed class lookups vs. runtime style computation + CSSOM
+   mutation) — but this is only a well-founded expectation until measured.
+   Record: (a) gzip size of `packages/vue/dist` (framework overhead only, no
+   components yet) as a baseline to compare against once the Phase 2 pilot ships
+   a `Box`; (b) revisit at the end of Phase 2 with a real render-count/time
+   benchmark of `<ChakraProvider><Box /></ChakraProvider>` against the
+   equivalent `@chakra-ui/react` component in Storybook/sandbox. Not a merge
+   blocker — informational, to turn the "should be faster/smaller" premise into
+   actual numbers before it's repeated as fact.
 
 ### Phase 2 — Pilot: `chakra` factory + `Box` + `ChakraProvider`
 
@@ -173,7 +189,7 @@ wrapping. Follows the component cycle.
 
 ### Component cycle (repeat per component)
 
-`component → storybook file → testing files → verify tests pass → confirm with user → PR (targets feature/chakra-ui) for CI → merge → next component`
+`component → storybook file → testing files → verify tests pass → confirm with user → PR (targets feature/chakra-ui-vue) for CI → merge → next component`
 
 Per component, mirror react's **three-file structure** (`<name>.tsx` impl,
 `index.ts` barrel + Ark hook/type re-exports +
@@ -255,7 +271,7 @@ the root-typecheck JSX-runtime conflict.
   sanity check only).
 - **Pilot & each component:** `pnpm test` (Vitest + `@testing-library/vue` +
   vitest-axe a11y) green locally; a Vue Storybook story renders with correct
-  classes/tokens; PR to `feature/chakra-ui` for CI. A sandbox Vue app
+  classes/tokens; PR to `feature/chakra-ui-vue` for CI. A sandbox Vue app
   (`sandbox/vite-vue`, added at the pilot) exercises the published-shape flow:
   import component + `styles.css` (zero-config), then project-root
   `panda codegen` override.
