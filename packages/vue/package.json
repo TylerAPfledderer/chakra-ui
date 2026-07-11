@@ -1,0 +1,129 @@
+{
+  "name": "@chakra-ui/vue",
+  "version": "3.31.0",
+  "description": "Responsive and accessible Vue UI components built with Vue and PandaCSS",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/vue"
+  },
+  "keywords": [
+    "vue",
+    "ui",
+    "design-system",
+    "vue-components",
+    "uikit",
+    "accessible",
+    "components",
+    "pandacss",
+    "library",
+    "design-system"
+  ],
+  "storybook": {
+    "title": "Chakra UI",
+    "url": "https://storybook.chakra-ui.com"
+  },
+  "dependencies": {
+    "@ark-ui/vue": "^5.29.1",
+    "@chakra-ui/panda-preset": "workspace:*",
+    "@pandacss/is-valid-prop": "^1.4.2",
+    "csstype": "^3.2.3"
+  },
+  "peerDependencies": {
+    "@pandacss/dev": ">=1.4.2",
+    "vue": ">=3.5.0"
+  },
+  "peerDependenciesMeta": {
+    "@pandacss/dev": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^1.4.2",
+    "vue": "3.5.39",
+    "vue-tsc": "^2.2.0"
+  },
+  "scripts": {
+    "prepack": "tsx ../../scripts/conditions.ts",
+    "postpack": "tsx ../../scripts/conditions.ts --restore",
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "build": "tsx ../../scripts/build/main.ts --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "vue-tsc --noEmit",
+    "mirror:react": "tsx scripts/mirror-from-react.ts"
+  },
+  "exports": {
+    ".": {
+      "dev": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./styled-system": {
+      "dev": "./src/styled-system/index.ts",
+      "import": {
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/esm/styled-system/index.js"
+      },
+      "require": {
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/cjs/styled-system/index.cjs"
+      }
+    },
+    "./theme": {
+      "dev": "./src/theme/index.ts",
+      "import": {
+        "types": "./dist/types/theme/index.d.ts",
+        "default": "./dist/esm/theme/index.js"
+      },
+      "require": {
+        "types": "./dist/types/theme/index.d.ts",
+        "default": "./dist/cjs/theme/index.cjs"
+      }
+    },
+    "./preset": {
+      "dev": "./src/preset.ts",
+      "import": {
+        "types": "./dist/types/preset.d.ts",
+        "default": "./dist/esm/preset.js"
+      },
+      "require": {
+        "types": "./dist/types/preset.d.ts",
+        "default": "./dist/cjs/preset.cjs"
+      }
+    },
+    "./*": {
+      "dev": "./src/components/*/index.ts",
+      "import": {
+        "types": "./dist/types/components/*/index.d.ts",
+        "default": "./dist/esm/components/*/index.js"
+      },
+      "require": {
+        "types": "./dist/types/components/*/index.d.ts",
+        "default": "./dist/cjs/components/*/index.cjs"
+      }
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  }
+}
