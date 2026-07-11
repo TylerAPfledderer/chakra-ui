@@ -53,7 +53,9 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
   ]
 
   const external = deps.length ? new RegExp(`^(${deps.join("|")})`) : undefined
-  const entries = await glob("src/**/*.{ts,tsx}")
+  const entries = await glob("src/**/*.{ts,tsx}", {
+    ignore: ["src/**/*.d.ts"],
+  })
 
   const outputs: RollupOptions["output"] = [
     {
