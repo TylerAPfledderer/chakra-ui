@@ -60,10 +60,13 @@
   "scripts": {
     "prepack": "tsx ../../scripts/conditions.ts",
     "postpack": "tsx ../../scripts/conditions.ts --restore",
+    "codegen": "panda codegen",
+    "cssgen": "panda cssgen --outfile dist/styles.css",
+    "prebuild": "pnpm codegen",
     "build:fast": "tsx ../../scripts/build/main.ts",
-    "build": "tsx ../../scripts/build/main.ts --dts",
+    "build": "tsx ../../scripts/build/main.ts --dts && pnpm cssgen",
     "dev": "pnpm build:fast --watch",
-    "clean": "rimraf dist .turbo",
+    "clean": "rimraf dist .turbo src/panda-system",
     "typecheck": "vue-tsc --noEmit",
     "mirror:react": "tsx scripts/mirror-from-react.ts"
   },
