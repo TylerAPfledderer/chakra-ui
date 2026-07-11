@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { pinInputAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 import { mapEntries } from "../../utils"
 import { inputRecipe } from "./input"
 

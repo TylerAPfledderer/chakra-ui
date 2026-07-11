@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { hoverCardAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const hoverCardSlotRecipe = defineSlotRecipe({
   className: "chakra-hover-card",

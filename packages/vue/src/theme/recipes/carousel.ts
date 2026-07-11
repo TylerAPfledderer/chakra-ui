@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { carouselAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const carouselSlotRecipe = defineSlotRecipe({
   className: "carousel",

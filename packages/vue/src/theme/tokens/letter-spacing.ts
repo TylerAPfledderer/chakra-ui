@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "@pandacss/dev"
 
 export const letterSpacings = defineTokens.letterSpacings({
   tighter: { value: "-0.05em" },

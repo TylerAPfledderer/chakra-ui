@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { ratingGroupAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const ratingGroupSlotRecipe = defineSlotRecipe({
   className: "chakra-rating-group",

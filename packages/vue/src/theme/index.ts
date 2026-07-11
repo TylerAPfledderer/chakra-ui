@@ -1,4 +1,4 @@
-import { defineConfig } from "../styled-system"
+import { defineConfig } from "@pandacss/dev"
 import { breakpoints } from "./breakpoints"
 import { globalCss } from "./global-css"
 import { layerStyles } from "./layer-styles"

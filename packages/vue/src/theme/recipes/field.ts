@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { fieldAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const fieldSlotRecipe = defineSlotRecipe({
   className: "chakra-field",

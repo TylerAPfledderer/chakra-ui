@@ -1,4 +1,4 @@
-import { defineRecipe } from "../../styled-system"
+import { defineRecipe } from "@pandacss/dev"
 import { badgeRecipe } from "./badge"
 
 const { variants, defaultVariants } = badgeRecipe

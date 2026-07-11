@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { fieldsetAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const fieldsetSlotRecipe = defineSlotRecipe({
   className: "fieldset",

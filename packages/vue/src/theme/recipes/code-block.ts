@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { codeBlockAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const codeBlockSlotRecipe = defineSlotRecipe({
   slots: codeBlockAnatomy.keys(),

@@ -1,4 +1,4 @@
-import { defineRecipe } from "../../styled-system"
+import { defineRecipe } from "@pandacss/dev"
 import { inputRecipe } from "./input"
 
 export const inputAddonRecipe = defineRecipe({

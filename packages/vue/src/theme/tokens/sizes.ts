@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "@pandacss/dev"
 import { spacing } from "./spacing"
 
 const largeSizes = defineTokens.sizes({

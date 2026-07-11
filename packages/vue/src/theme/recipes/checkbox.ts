@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { checkboxAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 import { checkmarkRecipe } from "./checkmark"
 
 export const checkboxSlotRecipe = defineSlotRecipe({

@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { comboboxAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const comboboxSlotRecipe = defineSlotRecipe({
   className: "chakra-combobox",

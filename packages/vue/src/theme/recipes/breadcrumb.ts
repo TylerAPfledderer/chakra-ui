@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { breadcrumbAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const breadcrumbSlotRecipe = defineSlotRecipe({
   className: "chakra-breadcrumb",

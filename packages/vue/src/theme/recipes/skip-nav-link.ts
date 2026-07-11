@@ -1,4 +1,4 @@
-import { defineRecipe } from "../../styled-system"
+import { defineRecipe } from "@pandacss/dev"
 
 export const skipNavLinkRecipe = defineRecipe({
   className: "chakra-skip-nav",

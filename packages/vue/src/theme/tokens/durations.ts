@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "@pandacss/dev"
 
 export const durations = defineTokens.durations({
   fastest: { value: "50ms" },

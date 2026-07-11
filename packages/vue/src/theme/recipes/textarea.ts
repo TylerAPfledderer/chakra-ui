@@ -1,4 +1,4 @@
-import { defineRecipe } from "../../styled-system"
+import { defineRecipe } from "@pandacss/dev"
 
 export const textareaRecipe = defineRecipe({
   className: "chakra-textarea",

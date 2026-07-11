@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { blockquoteAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const blockquoteSlotRecipe = defineSlotRecipe({
   className: "chakra-blockquote",

@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { sliderAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const sliderSlotRecipe = defineSlotRecipe({
   className: "chakra-slider",

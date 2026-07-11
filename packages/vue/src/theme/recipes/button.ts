@@ -1,4 +1,4 @@
-import { defineRecipe } from "../../styled-system"
+import { defineRecipe } from "@pandacss/dev"
 
 export const buttonRecipe = defineRecipe({
   className: "chakra-button",

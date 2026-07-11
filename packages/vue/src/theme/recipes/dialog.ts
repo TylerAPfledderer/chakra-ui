@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { dialogAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const dialogSlotRecipe = defineSlotRecipe({
   slots: dialogAnatomy.keys(),

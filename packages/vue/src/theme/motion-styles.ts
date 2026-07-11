@@ -1,4 +1,4 @@
-import { defineAnimationStyles } from "../styled-system"
+import { defineAnimationStyles } from "@pandacss/dev"
 
 export const animationStyles = defineAnimationStyles({
   "slide-fade-in": {

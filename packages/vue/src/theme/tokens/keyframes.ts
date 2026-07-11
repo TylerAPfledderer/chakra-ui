@@ -1,4 +1,4 @@
-import { defineKeyframes } from "../../styled-system"
+import { defineKeyframes } from "@pandacss/dev"
 
 export const keyframes = defineKeyframes({
   spin: {

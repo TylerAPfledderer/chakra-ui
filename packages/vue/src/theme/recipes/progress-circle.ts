@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { progressAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const progressCircleSlotRecipe = defineSlotRecipe({
   className: "chakra-progress-circle",
