@@ -59,8 +59,7 @@ export const cssVarsRoot = ":where(html, .chakra-theme)"
 
 export const defaultThemeConfig = defineConfig({
   preflight: true,
-  cssVarsPrefix,
-  cssVarsRoot,
+  prefix: { cssVar: cssVarsPrefix },
   globalCss,
   theme: {
     breakpoints,

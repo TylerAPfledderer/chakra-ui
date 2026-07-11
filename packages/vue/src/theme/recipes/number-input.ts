@@ -1,9 +1,9 @@
+import { type SystemStyleObject, defineSlotRecipe } from "@pandacss/dev"
 import { numberInputAnatomy } from "../../anatomy"
-import { defineSlotRecipe, defineStyle } from "../../styled-system"
 import { mapEntries } from "../../utils"
 import { inputRecipe } from "./input"
 
-const triggerStyle = defineStyle({
+const triggerStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -26,7 +26,7 @@ const triggerStyle = defineStyle({
   _active: {
     bg: "bg.emphasized",
   },
-})
+} as SystemStyleObject
 
 export const numberInputSlotRecipe = defineSlotRecipe({
   className: "chakra-number-input",
