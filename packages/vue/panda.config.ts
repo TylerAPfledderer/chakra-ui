@@ -8,7 +8,7 @@ export default defineConfig({
   jsxFramework: "vue",
   jsxFactory: "chakra",
   jsxStyleProps: "all",
-  outdir: "src/panda-system",
+  outdir: "src/styled-system",
   outExtension: "js",
   validation: "none",
 })

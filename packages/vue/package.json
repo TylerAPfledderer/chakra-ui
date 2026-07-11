@@ -66,7 +66,7 @@
     "build:fast": "tsx ../../scripts/build/main.ts",
     "build": "tsx ../../scripts/build/main.ts --dts && pnpm cssgen",
     "dev": "pnpm build:fast --watch",
-    "clean": "rimraf dist .turbo src/panda-system",
+    "clean": "rimraf dist .turbo",
     "typecheck": "vue-tsc --noEmit",
     "mirror:react": "tsx scripts/mirror-from-react.ts"
   },
