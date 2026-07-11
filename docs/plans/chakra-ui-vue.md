@@ -144,16 +144,22 @@ helper. Reuse `@pandacss/is-valid-prop` for prop-forwarding
    need no Panda at all; only consumers using the `chakra.*` factory need it.
    Peer `vue: ">=3.5.0"`.
 2. Mirror the agnostic engine/utils/theme into `src` (script-driven copy).
+   _(ultracode — dozens of files across styled-system/utils/theme; fan out the
+   copy+adapt+verify across parallel agents rather than one serial pass.)_
 3. Package tsconfig: override base `jsx: "react-jsx"` with
-   `jsxImportSource: "vue"`.
+   `jsxImportSource: "vue"`. _(low effort — single-file, single-decision edit.)_
 4. Wire Panda: `packages/vue/panda.config.ts` (chakra preset,
    `jsxFramework: "vue"`, `jsxFactory: "chakra"`); `prebuild`/`prepare` runs
    Panda codegen + cssgen into the internal styled-system + `styles.css`.
    Regenerate the CLI `*.gen.ts` types for vue via `chakra typegen` against the
-   vue preset entry.
+   vue preset entry. _(low effort — one config file + one generator run.)_
 5. Author the Vue-specific reimplementations (factory, provider, contexts,
-   composables, ref helper).
-6. Repo-wide tooling:
+   composables, ref helper). _(medium effort — a handful of interdependent
+   files; keep serial so the factory/provider/composable contracts stay
+   consistent, but no need for full ultracode orchestration.)_
+6. Repo-wide tooling: _(ultracode — five independent workstreams (vite config,
+   Storybook instance, vitest setup, root devDeps, new CI workflow) touching
+   unrelated parts of the repo; parallelize across agents.)_
    - root `vite.config.ts`: add `"@chakra-ui/vue"` alias +
      `@vitejs/plugin-vue-jsx` for the Vue test env.
    - `.storybook-vue/` new instance (`@storybook/vue3-vite`, vue stories glob).
@@ -178,14 +184,18 @@ helper. Reuse `@pandacss/is-valid-prop` for prop-forwarding
    benchmark of `<ChakraProvider><Box /></ChakraProvider>` against the
    equivalent `@chakra-ui/react` component in Storybook/sandbox. Not a merge
    blocker — informational, to turn the "should be faster/smaller" premise into
-   actual numbers before it's repeated as fact.
+   actual numbers before it's repeated as fact. _(low effort — record two
+   measurements; no orchestration needed.)_
 
 ### Phase 2 — Pilot: `chakra` factory + `Box` + `ChakraProvider`
 
 Prove end-to-end: `<ChakraProvider><Box p="4" bg="red.500" /></ChakraProvider>`
 renders correct Panda classes + token CSS vars, in a unit test and a sandbox Vue
 app. Validates the build-time styling + consumer-override story before any Ark
-wrapping. Follows the component cycle.
+wrapping. Follows the component cycle. _(low effort, deliberately serial — this
+is a single proof-of-concept with one correct outcome; parallelizing it adds
+risk exactly where the plan wants caution, per the "quickly but sensibly"
+principle.)_
 
 ### Component cycle (repeat per component)
 
@@ -199,13 +209,20 @@ Per component, mirror react's **three-file structure** (`<name>.tsx` impl,
 `packages/vue/__stories__/`; tests in `packages/vue/__tests__/` with
 `@testing-library/vue` + a Vue `render` helper mirroring
 `packages/react/__tests__/core/render.tsx`. After the pilot: `Checkbox` or
-`Switch` (simple Ark primitives) → upward.
+`Switch` (simple Ark primitives) → upward. _(single component: medium effort,
+serial — the four-file set (impl/barrel/namespace + story + tests) is small and
+interdependent, keep it one pass. Once several components are queued up:
+ultracode — pipeline component → stories → tests → verify per component, in
+parallel across components, since they don't depend on each other's internals.)_
 
 ### Final phase (deferred, optional) — shared extraction refactor
 
 Once the Vue package is stable and its mirrored surface has settled, optionally
 extract the now-proven common engine into a shared package and have both react
 and vue consume it. Deliberately last, so it never blocks shipping Vue.
+_(ultracode — cross-package refactor touching both react and vue call sites; use
+a workflow with adversarial verification given the flagship-package regression
+risk this whole plan was designed to avoid.)_
 
 ## CI / GitHub workflows
 
