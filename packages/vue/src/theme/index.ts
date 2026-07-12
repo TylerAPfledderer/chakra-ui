@@ -1,4 +1,4 @@
-import { defineConfig } from "@pandacss/dev"
+import { defineConfig, definePreset } from "@pandacss/dev"
 import { breakpoints } from "./breakpoints"
 import { globalCss } from "./global-css"
 import { layerStyles } from "./layer-styles"
@@ -60,6 +60,28 @@ export const cssVarsRoot = ":where(html, .chakra-theme)"
 export const defaultThemeConfig = defineConfig({
   preflight: true,
   prefix: { cssVar: cssVarsPrefix },
+  globalCss,
+  theme: {
+    breakpoints,
+    keyframes,
+    tokens,
+    semanticTokens,
+    recipes,
+    slotRecipes,
+    textStyles,
+    layerStyles,
+    animationStyles,
+  },
+})
+
+// Panda preset form of the same theme, for panda.config.ts's `presets` —
+// keeps vue's own codegen off the separate @chakra-ui/panda-preset package
+// (that package is for external consumers using raw Panda directly, not
+// this package's internal build). `preflight`/`prefix` are config-level
+// options (CssgenOptions), not part of Panda's Preset shape, so they're set
+// directly in panda.config.ts instead of here.
+export const defaultThemePreset = definePreset({
+  name: "@chakra-ui/vue-theme",
   globalCss,
   theme: {
     breakpoints,

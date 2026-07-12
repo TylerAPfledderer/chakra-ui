@@ -1,8 +1,10 @@
 import { defineConfig } from "@pandacss/dev"
+import { cssVarsPrefix, defaultThemePreset } from "./src/theme"
 
 export default defineConfig({
-  presets: ["@chakra-ui/panda-preset"],
-  preflight: false,
+  presets: [defaultThemePreset],
+  preflight: true,
+  prefix: { cssVar: cssVarsPrefix },
   include: ["./src/**/*.{ts,tsx}"],
   exclude: [],
   jsxFramework: "vue",

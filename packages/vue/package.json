@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@ark-ui/vue": "^5.29.1",
-    "@chakra-ui/panda-preset": "workspace:*",
     "@pandacss/is-valid-prop": "^1.4.2",
     "csstype": "^3.2.3"
   },
