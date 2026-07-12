@@ -42,3 +42,6 @@ export * from "./theme"
 
 // Component slot/part anatomy definitions (sourced from @ark-ui/vue).
 export * from "./anatomy"
+
+// Components — Ark-wrapped, recipe-styled parts.
+export * from "./components/checkbox"
