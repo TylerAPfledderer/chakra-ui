@@ -24,6 +24,7 @@ export default defineConfig([
     "**/coverage",
     "**/.next",
     "**/build",
+    "packages/vue/src/styled-system/**",
   ]),
   {
     extends: fixupConfigRules(
@@ -127,6 +128,17 @@ export default defineConfig([
       "prefer-object-spread": "off",
       "arrow-body-style": "off",
       "react/sort-comp": "off",
+    },
+  },
+  {
+    files: ["packages/vue/**/*.{ts,tsx}"],
+    rules: {
+      // packages/vue authors Vue components/composables, not React — the
+      // react-hooks rules false-positive on Vue's `use*` composable naming
+      // convention (e.g. `useStyleContext`) and React-only JSX assumptions.
+      "react-hooks/rules-of-hooks": "off",
+      "react-hooks/exhaustive-deps": "off",
+      "react/jsx-filename-extension": "off",
     },
   },
 ])
