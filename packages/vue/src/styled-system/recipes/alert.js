@@ -1,66 +1,82 @@
-import {
-  compact,
-  getSlotCompoundVariant,
-  memo,
-  splitProps,
-} from "../helpers.js"
-import { createRecipe } from "./create-recipe.js"
+import { compact, getSlotCompoundVariant, memo, splitProps } from '../helpers.js';
+import { createRecipe } from './create-recipe.js';
 
 const alertDefaultVariants = {
-  status: "info",
-  variant: "subtle",
-  size: "md",
-  inline: false,
+  "status": "info",
+  "variant": "subtle",
+  "size": "md",
+  "inline": false
 }
 const alertCompoundVariants = []
 
 const alertSlotNames = [
-  ["title", "alert__title"],
-  ["description", "alert__description"],
-  ["root", "alert__root"],
-  ["indicator", "alert__indicator"],
-  ["content", "alert__content"],
-]
-const alertSlotFns = /* @__PURE__ */ alertSlotNames.map(
-  ([slotName, slotKey]) => [
-    slotName,
-    createRecipe(
-      slotKey,
-      alertDefaultVariants,
-      getSlotCompoundVariant(alertCompoundVariants, slotName),
-    ),
+  [
+    "title",
+    "chakra-alert__title"
   ],
-)
+  [
+    "description",
+    "chakra-alert__description"
+  ],
+  [
+    "root",
+    "chakra-alert__root"
+  ],
+  [
+    "indicator",
+    "chakra-alert__indicator"
+  ],
+  [
+    "content",
+    "chakra-alert__content"
+  ]
+]
+const alertSlotFns = /* @__PURE__ */ alertSlotNames.map(([slotName, slotKey]) => [slotName, createRecipe(slotKey, alertDefaultVariants, getSlotCompoundVariant(alertCompoundVariants, slotName))])
 
 const alertFn = memo((props = {}) => {
-  return Object.fromEntries(
-    alertSlotFns.map(([slotName, slotFn]) => [
-      slotName,
-      slotFn.recipeFn(props),
-    ]),
-  )
+  return Object.fromEntries(alertSlotFns.map(([slotName, slotFn]) => [slotName, slotFn.recipeFn(props)]))
 })
 
-const alertVariantKeys = ["status", "inline", "variant", "size"]
-const getVariantProps = (variants) => ({
-  ...alertDefaultVariants,
-  ...compact(variants),
-})
+const alertVariantKeys = [
+  "status",
+  "inline",
+  "variant",
+  "size"
+]
+const getVariantProps = (variants) => ({ ...alertDefaultVariants, ...compact(variants) })
 
 export const alert = /* @__PURE__ */ Object.assign(alertFn, {
   __recipe__: false,
-  __name__: "alert",
+  __name__: 'alert',
   raw: (props) => props,
   classNameMap: {},
   variantKeys: alertVariantKeys,
   variantMap: {
-    status: ["info", "warning", "success", "error", "neutral"],
-    inline: ["true", "false"],
-    variant: ["subtle", "surface", "outline", "solid"],
-    size: ["sm", "md", "lg"],
-  },
+  "status": [
+    "info",
+    "warning",
+    "success",
+    "error",
+    "neutral"
+  ],
+  "inline": [
+    "true",
+    "false"
+  ],
+  "variant": [
+    "subtle",
+    "surface",
+    "outline",
+    "solid"
+  ],
+  "size": [
+    "sm",
+    "md",
+    "lg"
+  ]
+},
   splitVariantProps(props) {
     return splitProps(props, alertVariantKeys)
   },
-  getVariantProps,
+  getVariantProps
 })

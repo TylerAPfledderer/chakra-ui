@@ -1,19 +1,11 @@
-import { computed, defineComponent, h } from "vue"
-import { css, cva, cx } from "../css/index.js"
-import { normalizeHTMLProps, splitProps } from "../helpers.js"
-import {
-  composeCvaFn,
-  composeShouldForwardProps,
-  defaultShouldForwardProp,
-  getDisplayName,
-} from "./factory-helper.js"
-import { isCssProperty } from "./is-valid-prop.js"
+import { defineComponent, h, computed } from 'vue'
+import { defaultShouldForwardProp, composeShouldForwardProps, composeCvaFn, getDisplayName } from './factory-helper.js';
+import { isCssProperty } from './is-valid-prop.js';
+import { css, cx, cva } from '../css/index.js';
+import { splitProps, normalizeHTMLProps } from '../helpers.js';
 
 function styledFn(Dynamic, configOrCva = {}, options = {}) {
-  const cvaFn =
-    configOrCva.__cva__ || configOrCva.__recipe__
-      ? configOrCva
-      : cva(configOrCva)
+  const cvaFn = configOrCva.__cva__ || configOrCva.__recipe__ ? configOrCva : cva(configOrCva)
 
   const forwardFn = options.shouldForwardProp || defaultShouldForwardProp
   const shouldForwardProp = (prop) => {
@@ -22,18 +14,13 @@ function styledFn(Dynamic, configOrCva = {}, options = {}) {
   }
 
   const defaultProps = Object.assign(
-    options.dataAttr && configOrCva.__name__
-      ? { "data-recipe": configOrCva.__name__ }
-      : {},
+    options.dataAttr && configOrCva.__name__ ? { 'data-recipe': configOrCva.__name__ } : {},
     options.defaultProps,
   )
 
   const __cvaFn__ = composeCvaFn(Dynamic.__cva__, cvaFn)
-  const __shouldForwardProps__ = composeShouldForwardProps(
-    Dynamic,
-    shouldForwardProp,
-  )
-
+  const __shouldForwardProps__ = composeShouldForwardProps(Dynamic, shouldForwardProp)
+  
   const __base__ = Dynamic.__base__ || Dynamic
   const name = getDisplayName(__base__)
 
@@ -43,115 +30,69 @@ function styledFn(Dynamic, configOrCva = {}, options = {}) {
     props: {
       modelValue: null,
       unstyled: { type: Boolean, default: false },
-      as: { type: [String, Object], default: __base__ },
+      as: { type: [String, Object], default: __base__ }
     },
     setup(props, { slots, attrs, emit }) {
-      const combinedProps = computed(() =>
-        Object.assign({}, defaultProps, attrs),
-      )
+      const combinedProps = computed(() => Object.assign({}, defaultProps, attrs))
 
       const splittedProps = computed(() => {
-        return splitProps(
-          combinedProps.value,
-          normalizeHTMLProps.keys,
-          __shouldForwardProps__,
-          __cvaFn__.variantKeys,
-          isCssProperty,
-        )
+        return splitProps(combinedProps.value, normalizeHTMLProps.keys, __shouldForwardProps__, __cvaFn__.variantKeys, isCssProperty)
       })
 
       const recipeClass = computed(() => {
-        const [
-          _htmlProps,
-          _forwardedProps,
-          variantProps,
-          styleProps,
-          _elementProps,
-        ] = splittedProps.value
+        const [_htmlProps, _forwardedProps, variantProps, styleProps, _elementProps] = splittedProps.value
         const { css: cssStyles, ...propStyles } = styleProps
-        const compoundVariantStyles =
-          __cvaFn__.__getCompoundVariantCss__?.(variantProps)
-        return cx(
-          __cvaFn__(variantProps, false),
-          css(compoundVariantStyles, propStyles, cssStyles),
-          combinedProps.value.className,
-          combinedProps.value.class,
-        )
+        const compoundVariantStyles = __cvaFn__.__getCompoundVariantCss__?.(variantProps);
+        return cx(__cvaFn__(variantProps, false), css(compoundVariantStyles, propStyles, cssStyles), combinedProps.value.className, combinedProps.value.class)
       })
 
       const cvaClass = computed(() => {
-        const [
-          _htmlProps,
-          _forwardedProps,
-          variantProps,
-          styleProps,
-          _elementProps,
-        ] = splittedProps.value
+        const [_htmlProps, _forwardedProps, variantProps, styleProps, _elementProps] = splittedProps.value
         const { css: cssStyles, ...propStyles } = styleProps
         const cvaStyles = __cvaFn__.raw(variantProps)
-        return cx(
-          css(cvaStyles, propStyles, cssStyles),
-          combinedProps.value.className,
-          combinedProps.value.class,
-        )
+        return cx(css(cvaStyles, propStyles, cssStyles), combinedProps.value.className, combinedProps.value.class)
       })
 
       const classes = computed(() => {
         if (props.unstyled) {
-          const [
-            _htmlProps,
-            _forwardedProps,
-            _variantProps,
-            styleProps,
-            _elementProps,
-          ] = splittedProps.value
+          const [_htmlProps, _forwardedProps, _variantProps, styleProps, _elementProps] = splittedProps.value
           const { css: cssStyles, ...propStyles } = styleProps
-          return cx(
-            css(propStyles, cssStyles),
-            combinedProps.value.className,
-            combinedProps.value.class,
-          )
+          return cx(css(propStyles, cssStyles), combinedProps.value.className, combinedProps.value.class)
         }
         return configOrCva.__recipe__ ? recipeClass.value : cvaClass.value
       })
 
       const vModelProps = computed(() => {
-        const result = {}
+        const result = {};
 
         if (
-          props.as === "input" &&
-          (props.type === "checkbox" || props.type === "radio")
+          props.as === 'input' &&
+          (props.type === 'checkbox' || props.type === 'radio')
         ) {
-          result.checked = props.modelValue
+          result.checked = props.modelValue;
           result.onChange = (event) => {
-            const checked = !event.currentTarget.checked
-            emit("change", checked, event)
-            emit("update:modelValue", checked, event)
-          }
+            const checked = !event.currentTarget.checked;
+            emit('change', checked, event);
+            emit('update:modelValue', checked, event);
+          };
         } else if (
-          props.as === "input" ||
-          props.as === "textarea" ||
-          props.as === "select"
+          props.as === 'input' ||
+          props.as === 'textarea' ||
+          props.as === 'select'
         ) {
-          result.value = props.modelValue
+          result.value = props.modelValue;
           result.onInput = (event) => {
-            const value = event.currentTarget.value
-            emit("input", value, event)
-            emit("update:modelValue", value, event)
-          }
+            const value = event.currentTarget.value;
+            emit('input', value, event);
+            emit('update:modelValue', value, event);
+          };
         }
 
-        return result
-      })
+        return result;
+      });
 
       return () => {
-        const [
-          htmlProps,
-          forwardedProps,
-          _variantProps,
-          _styleProps,
-          elementProps,
-        ] = splittedProps.value
+        const [htmlProps, forwardedProps, _variantProps, _styleProps, elementProps] = splittedProps.value
 
         return h(
           props.as,
@@ -176,11 +117,10 @@ function styledFn(Dynamic, configOrCva = {}, options = {}) {
   return ChakraComponent
 }
 
-const tags =
-  "a, abbr, address, area, article, aside, audio, b, base, bdi, bdo, big, blockquote, body, br, button, canvas, caption, cite, code, col, colgroup, data, datalist, dd, del, details, dfn, dialog, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, input, ins, kbd, keygen, label, legend, li, link, main, map, mark, marquee, menu, menuitem, meta, meter, nav, noscript, object, ol, optgroup, option, output, p, param, picture, pre, progress, q, rp, rt, ruby, s, samp, script, section, select, small, source, span, strong, style, sub, summary, sup, table, tbody, td, textarea, tfoot, th, thead, time, title, tr, track, u, ul, var, video, wbr, circle, clipPath, defs, ellipse, foreignObject, g, image, line, linearGradient, mask, path, pattern, polygon, polyline, radialGradient, rect, stop, svg, text, tspan"
+const tags = 'a, abbr, address, area, article, aside, audio, b, base, bdi, bdo, big, blockquote, body, br, button, canvas, caption, cite, code, col, colgroup, data, datalist, dd, del, details, dfn, dialog, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, input, ins, kbd, keygen, label, legend, li, link, main, map, mark, marquee, menu, menuitem, meta, meter, nav, noscript, object, ol, optgroup, option, output, p, param, picture, pre, progress, q, rp, rt, ruby, s, samp, script, section, select, small, source, span, strong, style, sub, summary, sup, table, tbody, td, textarea, tfoot, th, thead, time, title, tr, track, u, ul, var, video, wbr, circle, clipPath, defs, ellipse, foreignObject, g, image, line, linearGradient, mask, path, pattern, polygon, polyline, radialGradient, rect, stop, svg, text, tspan';
 
-export const chakra = /* @__PURE__ */ styledFn.bind()
+export const chakra = /* @__PURE__ */ styledFn.bind();
 
-tags.split(", ").forEach((tag) => {
-  chakra[tag] = chakra(tag)
-})
+tags.split(', ').forEach((tag) => {
+  chakra[tag] = chakra(tag);
+});

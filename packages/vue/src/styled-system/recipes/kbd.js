@@ -1,25 +1,30 @@
-import { memo, splitProps } from "../helpers.js"
-import { createRecipe, mergeRecipes } from "./create-recipe.js"
+import { memo, splitProps } from '../helpers.js';
+import { createRecipe, mergeRecipes } from './create-recipe.js';
 
-const kbdFn = /* @__PURE__ */ createRecipe(
-  "kbd",
-  {
-    size: "md",
-    variant: "raised",
-  },
-  [],
-)
+const kbdFn = /* @__PURE__ */ createRecipe('chakra-kbd', {
+  "size": "md",
+  "variant": "raised"
+}, [])
 
 const kbdVariantMap = {
-  variant: ["raised", "outline", "subtle", "plain"],
-  size: ["sm", "md", "lg"],
+  "variant": [
+    "raised",
+    "outline",
+    "subtle",
+    "plain"
+  ],
+  "size": [
+    "sm",
+    "md",
+    "lg"
+  ]
 }
 
 const kbdVariantKeys = Object.keys(kbdVariantMap)
 
 export const kbd = /* @__PURE__ */ Object.assign(memo(kbdFn.recipeFn), {
   __recipe__: true,
-  __name__: "kbd",
+  __name__: 'kbd',
   __getCompoundVariantCss__: kbdFn.__getCompoundVariantCss__,
   raw: (props) => props,
   variantKeys: kbdVariantKeys,

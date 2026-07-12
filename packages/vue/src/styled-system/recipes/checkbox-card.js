@@ -1,46 +1,48 @@
-import {
-  compact,
-  getSlotCompoundVariant,
-  memo,
-  splitProps,
-} from "../helpers.js"
-import { createRecipe } from "./create-recipe.js"
+import { compact, getSlotCompoundVariant, memo, splitProps } from '../helpers.js';
+import { createRecipe } from './create-recipe.js';
 
 const checkboxCardDefaultVariants = {
-  size: "md",
-  variant: "outline",
-  align: "start",
-  orientation: "horizontal",
+  "size": "md",
+  "variant": "outline",
+  "align": "start",
+  "orientation": "horizontal"
 }
 const checkboxCardCompoundVariants = []
 
 const checkboxCardSlotNames = [
-  ["root", "checkbox-card__root"],
-  ["control", "checkbox-card__control"],
-  ["label", "checkbox-card__label"],
-  ["description", "checkbox-card__description"],
-  ["addon", "checkbox-card__addon"],
-  ["indicator", "checkbox-card__indicator"],
-  ["content", "checkbox-card__content"],
-]
-const checkboxCardSlotFns = /* @__PURE__ */ checkboxCardSlotNames.map(
-  ([slotName, slotKey]) => [
-    slotName,
-    createRecipe(
-      slotKey,
-      checkboxCardDefaultVariants,
-      getSlotCompoundVariant(checkboxCardCompoundVariants, slotName),
-    ),
+  [
+    "root",
+    "chakra-checkbox-card__root"
   ],
-)
+  [
+    "control",
+    "chakra-checkbox-card__control"
+  ],
+  [
+    "label",
+    "chakra-checkbox-card__label"
+  ],
+  [
+    "description",
+    "chakra-checkbox-card__description"
+  ],
+  [
+    "addon",
+    "chakra-checkbox-card__addon"
+  ],
+  [
+    "indicator",
+    "chakra-checkbox-card__indicator"
+  ],
+  [
+    "content",
+    "chakra-checkbox-card__content"
+  ]
+]
+const checkboxCardSlotFns = /* @__PURE__ */ checkboxCardSlotNames.map(([slotName, slotKey]) => [slotName, createRecipe(slotKey, checkboxCardDefaultVariants, getSlotCompoundVariant(checkboxCardCompoundVariants, slotName))])
 
 const checkboxCardFn = memo((props = {}) => {
-  return Object.fromEntries(
-    checkboxCardSlotFns.map(([slotName, slotFn]) => [
-      slotName,
-      slotFn.recipeFn(props),
-    ]),
-  )
+  return Object.fromEntries(checkboxCardSlotFns.map(([slotName, slotFn]) => [slotName, slotFn.recipeFn(props)]))
 })
 
 const checkboxCardVariantKeys = [
@@ -48,28 +50,45 @@ const checkboxCardVariantKeys = [
   "variant",
   "justify",
   "align",
-  "orientation",
+  "orientation"
 ]
-const getVariantProps = (variants) => ({
-  ...checkboxCardDefaultVariants,
-  ...compact(variants),
-})
+const getVariantProps = (variants) => ({ ...checkboxCardDefaultVariants, ...compact(variants) })
 
 export const checkboxCard = /* @__PURE__ */ Object.assign(checkboxCardFn, {
   __recipe__: false,
-  __name__: "checkboxCard",
+  __name__: 'checkboxCard',
   raw: (props) => props,
   classNameMap: {},
   variantKeys: checkboxCardVariantKeys,
   variantMap: {
-    size: ["sm", "md", "lg"],
-    variant: ["surface", "subtle", "outline", "solid"],
-    justify: ["start", "end", "center"],
-    align: ["start", "end", "center"],
-    orientation: ["vertical", "horizontal"],
-  },
+  "size": [
+    "sm",
+    "md",
+    "lg"
+  ],
+  "variant": [
+    "surface",
+    "subtle",
+    "outline",
+    "solid"
+  ],
+  "justify": [
+    "start",
+    "end",
+    "center"
+  ],
+  "align": [
+    "start",
+    "end",
+    "center"
+  ],
+  "orientation": [
+    "vertical",
+    "horizontal"
+  ]
+},
   splitVariantProps(props) {
     return splitProps(props, checkboxCardVariantKeys)
   },
-  getVariantProps,
+  getVariantProps
 })

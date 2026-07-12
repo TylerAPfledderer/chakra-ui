@@ -1,11 +1,10 @@
 /* eslint-disable */
-import type { FunctionalComponent } from "vue"
-import type { GridProperties } from "../patterns/grid"
-import type { HTMLChakraProps } from "../types/jsx"
-import type { DistributiveOmit } from "../types/system-types"
+import type { FunctionalComponent } from 'vue'
+import type { GridProperties } from '../patterns/grid';
+import type { HTMLChakraProps } from '../types/jsx';
+import type { DistributiveOmit } from '../types/system-types';
 
-export interface GridProps
-  extends GridProperties,
-    DistributiveOmit<HTMLChakraProps<"div">, keyof GridProperties> {}
+export interface GridProps extends GridProperties, DistributiveOmit<HTMLChakraProps<'div'>, keyof GridProperties > {}
+
 
 export declare const Grid: FunctionalComponent<GridProps>

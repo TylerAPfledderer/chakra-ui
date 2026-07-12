@@ -1,12 +1,12 @@
 /* eslint-disable */
-import type { ConditionalValue } from "../types/index"
-import type { DistributiveOmit, Pretty } from "../types/system-types"
+import type { ConditionalValue } from '../types/index';
+import type { DistributiveOmit, Pretty } from '../types/system-types';
 
 interface FieldsetVariant {
   /**
-   * @default "md"
-   */
-  size: "sm" | "md" | "lg"
+ * @default "md"
+ */
+size: "sm" | "md" | "lg"
 }
 
 type FieldsetVariantMap = {
@@ -16,9 +16,7 @@ type FieldsetVariantMap = {
 type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "content"
 
 export type FieldsetVariantProps = {
-  [key in keyof FieldsetVariant]?:
-    | ConditionalValue<FieldsetVariant[key]>
-    | undefined
+  [key in keyof FieldsetVariant]?: ConditionalValue<FieldsetVariant[key]> | undefined
 }
 
 export interface FieldsetRecipe {
@@ -28,13 +26,9 @@ export interface FieldsetRecipe {
   raw: (props?: FieldsetVariantProps) => FieldsetVariantProps
   variantMap: FieldsetVariantMap
   variantKeys: Array<keyof FieldsetVariant>
-  splitVariantProps<Props extends FieldsetVariantProps>(
-    props: Props,
-  ): [
-    FieldsetVariantProps,
-    Pretty<DistributiveOmit<Props, keyof FieldsetVariantProps>>,
-  ]
+  splitVariantProps<Props extends FieldsetVariantProps>(props: Props): [FieldsetVariantProps, Pretty<DistributiveOmit<Props, keyof FieldsetVariantProps>>]
   getVariantProps: (props?: FieldsetVariantProps) => FieldsetVariantProps
 }
+
 
 export declare const fieldset: FieldsetRecipe

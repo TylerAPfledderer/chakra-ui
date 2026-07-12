@@ -1,20 +1,19 @@
-import { css } from "../css/index.js"
-import { getPatternStyles, patternFns } from "../helpers.js"
+import { getPatternStyles, patternFns } from '../helpers.js';
+import { css } from '../css/index.js';
 
 const hstackConfig = {
-  transform(props) {
-    const { justify, gap, ...rest } = props
-    return {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: justify,
-      gap,
-      flexDirection: "row",
-      ...rest,
-    }
-  },
-  defaultValues: { gap: "8px" },
-}
+transform(props) {
+  const { justify, gap, ...rest } = props;
+  return {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: justify,
+    gap,
+    flexDirection: "row",
+    ...rest
+  };
+},
+defaultValues:{gap:'8px'}}
 
 export const getHstackStyle = (styles = {}) => {
   const _styles = getPatternStyles(hstackConfig, styles)

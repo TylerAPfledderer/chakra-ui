@@ -1,25 +1,36 @@
-import { memo, splitProps } from "../helpers.js"
-import { createRecipe, mergeRecipes } from "./create-recipe.js"
+import { memo, splitProps } from '../helpers.js';
+import { createRecipe, mergeRecipes } from './create-recipe.js';
 
-const buttonFn = /* @__PURE__ */ createRecipe(
-  "button",
-  {
-    size: "md",
-    variant: "solid",
-  },
-  [],
-)
+const buttonFn = /* @__PURE__ */ createRecipe('chakra-button', {
+  "size": "md",
+  "variant": "solid"
+}, [])
 
 const buttonVariantMap = {
-  size: ["2xs", "xs", "sm", "md", "lg", "xl", "2xl"],
-  variant: ["solid", "subtle", "surface", "outline", "ghost", "plain"],
+  "size": [
+    "2xs",
+    "xs",
+    "sm",
+    "md",
+    "lg",
+    "xl",
+    "2xl"
+  ],
+  "variant": [
+    "solid",
+    "subtle",
+    "surface",
+    "outline",
+    "ghost",
+    "plain"
+  ]
 }
 
 const buttonVariantKeys = Object.keys(buttonVariantMap)
 
 export const button = /* @__PURE__ */ Object.assign(memo(buttonFn.recipeFn), {
   __recipe__: true,
-  __name__: "button",
+  __name__: 'button',
   __getCompoundVariantCss__: buttonFn.__getCompoundVariantCss__,
   raw: (props) => props,
   variantKeys: buttonVariantKeys,

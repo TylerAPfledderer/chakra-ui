@@ -1,20 +1,20 @@
 /* eslint-disable */
-import type { ConditionalValue } from "../types/index"
-import type { DistributiveOmit, Pretty } from "../types/system-types"
+import type { ConditionalValue } from '../types/index';
+import type { DistributiveOmit, Pretty } from '../types/system-types';
 
 interface DataListVariant {
   /**
-   * @default "vertical"
-   */
-  orientation: "horizontal" | "vertical"
-  /**
-   * @default "md"
-   */
-  size: "sm" | "md" | "lg"
-  /**
-   * @default "subtle"
-   */
-  variant: "subtle" | "bold"
+ * @default "vertical"
+ */
+orientation: "horizontal" | "vertical"
+/**
+ * @default "md"
+ */
+size: "sm" | "md" | "lg"
+/**
+ * @default "subtle"
+ */
+variant: "subtle" | "bold"
 }
 
 type DataListVariantMap = {
@@ -24,9 +24,7 @@ type DataListVariantMap = {
 type DataListSlot = "root" | "item" | "itemLabel" | "itemValue"
 
 export type DataListVariantProps = {
-  [key in keyof DataListVariant]?:
-    | ConditionalValue<DataListVariant[key]>
-    | undefined
+  [key in keyof DataListVariant]?: ConditionalValue<DataListVariant[key]> | undefined
 }
 
 export interface DataListRecipe {
@@ -36,13 +34,9 @@ export interface DataListRecipe {
   raw: (props?: DataListVariantProps) => DataListVariantProps
   variantMap: DataListVariantMap
   variantKeys: Array<keyof DataListVariant>
-  splitVariantProps<Props extends DataListVariantProps>(
-    props: Props,
-  ): [
-    DataListVariantProps,
-    Pretty<DistributiveOmit<Props, keyof DataListVariantProps>>,
-  ]
+  splitVariantProps<Props extends DataListVariantProps>(props: Props): [DataListVariantProps, Pretty<DistributiveOmit<Props, keyof DataListVariantProps>>]
   getVariantProps: (props?: DataListVariantProps) => DataListVariantProps
 }
+
 
 export declare const dataList: DataListRecipe

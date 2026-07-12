@@ -1,67 +1,86 @@
-import {
-  compact,
-  getSlotCompoundVariant,
-  memo,
-  splitProps,
-} from "../helpers.js"
-import { createRecipe } from "./create-recipe.js"
+import { compact, getSlotCompoundVariant, memo, splitProps } from '../helpers.js';
+import { createRecipe } from './create-recipe.js';
 
 const timelineDefaultVariants = {
-  size: "md",
-  variant: "solid",
-  showLastSeparator: false,
+  "size": "md",
+  "variant": "solid",
+  "showLastSeparator": false
 }
 const timelineCompoundVariants = []
 
 const timelineSlotNames = [
-  ["root", "timeline__root"],
-  ["item", "timeline__item"],
-  ["content", "timeline__content"],
-  ["separator", "timeline__separator"],
-  ["indicator", "timeline__indicator"],
-  ["connector", "timeline__connector"],
-  ["title", "timeline__title"],
-  ["description", "timeline__description"],
-]
-const timelineSlotFns = /* @__PURE__ */ timelineSlotNames.map(
-  ([slotName, slotKey]) => [
-    slotName,
-    createRecipe(
-      slotKey,
-      timelineDefaultVariants,
-      getSlotCompoundVariant(timelineCompoundVariants, slotName),
-    ),
+  [
+    "root",
+    "chakra-timeline__root"
   ],
-)
+  [
+    "item",
+    "chakra-timeline__item"
+  ],
+  [
+    "content",
+    "chakra-timeline__content"
+  ],
+  [
+    "separator",
+    "chakra-timeline__separator"
+  ],
+  [
+    "indicator",
+    "chakra-timeline__indicator"
+  ],
+  [
+    "connector",
+    "chakra-timeline__connector"
+  ],
+  [
+    "title",
+    "chakra-timeline__title"
+  ],
+  [
+    "description",
+    "chakra-timeline__description"
+  ]
+]
+const timelineSlotFns = /* @__PURE__ */ timelineSlotNames.map(([slotName, slotKey]) => [slotName, createRecipe(slotKey, timelineDefaultVariants, getSlotCompoundVariant(timelineCompoundVariants, slotName))])
 
 const timelineFn = memo((props = {}) => {
-  return Object.fromEntries(
-    timelineSlotFns.map(([slotName, slotFn]) => [
-      slotName,
-      slotFn.recipeFn(props),
-    ]),
-  )
+  return Object.fromEntries(timelineSlotFns.map(([slotName, slotFn]) => [slotName, slotFn.recipeFn(props)]))
 })
 
-const timelineVariantKeys = ["variant", "showLastSeparator", "size"]
-const getVariantProps = (variants) => ({
-  ...timelineDefaultVariants,
-  ...compact(variants),
-})
+const timelineVariantKeys = [
+  "variant",
+  "showLastSeparator",
+  "size"
+]
+const getVariantProps = (variants) => ({ ...timelineDefaultVariants, ...compact(variants) })
 
 export const timeline = /* @__PURE__ */ Object.assign(timelineFn, {
   __recipe__: false,
-  __name__: "timeline",
+  __name__: 'timeline',
   raw: (props) => props,
   classNameMap: {},
   variantKeys: timelineVariantKeys,
   variantMap: {
-    variant: ["subtle", "solid", "outline", "plain"],
-    showLastSeparator: ["true", "false"],
-    size: ["sm", "md", "lg", "xl"],
-  },
+  "variant": [
+    "subtle",
+    "solid",
+    "outline",
+    "plain"
+  ],
+  "showLastSeparator": [
+    "true",
+    "false"
+  ],
+  "size": [
+    "sm",
+    "md",
+    "lg",
+    "xl"
+  ]
+},
   splitVariantProps(props) {
     return splitProps(props, timelineVariantKeys)
   },
-  getVariantProps,
+  getVariantProps
 })

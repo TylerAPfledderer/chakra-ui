@@ -1,25 +1,32 @@
-import { memo, splitProps } from "../helpers.js"
-import { createRecipe, mergeRecipes } from "./create-recipe.js"
+import { memo, splitProps } from '../helpers.js';
+import { createRecipe, mergeRecipes } from './create-recipe.js';
 
-const badgeFn = /* @__PURE__ */ createRecipe(
-  "badge",
-  {
-    variant: "subtle",
-    size: "sm",
-  },
-  [],
-)
+const badgeFn = /* @__PURE__ */ createRecipe('chakra-badge', {
+  "variant": "subtle",
+  "size": "sm"
+}, [])
 
 const badgeVariantMap = {
-  variant: ["solid", "subtle", "outline", "surface", "plain"],
-  size: ["xs", "sm", "md", "lg"],
+  "variant": [
+    "solid",
+    "subtle",
+    "outline",
+    "surface",
+    "plain"
+  ],
+  "size": [
+    "xs",
+    "sm",
+    "md",
+    "lg"
+  ]
 }
 
 const badgeVariantKeys = Object.keys(badgeVariantMap)
 
 export const badge = /* @__PURE__ */ Object.assign(memo(badgeFn.recipeFn), {
   __recipe__: true,
-  __name__: "badge",
+  __name__: 'badge',
   __getCompoundVariantCss__: badgeFn.__getCompoundVariantCss__,
   raw: (props) => props,
   variantKeys: badgeVariantKeys,

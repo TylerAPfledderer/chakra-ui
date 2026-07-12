@@ -1,23 +1,27 @@
-import { memo, splitProps } from "../helpers.js"
-import { createRecipe, mergeRecipes } from "./create-recipe.js"
+import { memo, splitProps } from '../helpers.js';
+import { createRecipe, mergeRecipes } from './create-recipe.js';
 
-const iconFn = /* @__PURE__ */ createRecipe(
-  "icon",
-  {
-    size: "inherit",
-  },
-  [],
-)
+const iconFn = /* @__PURE__ */ createRecipe('chakra-icon', {
+  "size": "inherit"
+}, [])
 
 const iconVariantMap = {
-  size: ["inherit", "xs", "sm", "md", "lg", "xl", "2xl"],
+  "size": [
+    "inherit",
+    "xs",
+    "sm",
+    "md",
+    "lg",
+    "xl",
+    "2xl"
+  ]
 }
 
 const iconVariantKeys = Object.keys(iconVariantMap)
 
 export const icon = /* @__PURE__ */ Object.assign(memo(iconFn.recipeFn), {
   __recipe__: true,
-  __name__: "icon",
+  __name__: 'icon',
   __getCompoundVariantCss__: iconFn.__getCompoundVariantCss__,
   raw: (props) => props,
   variantKeys: iconVariantKeys,

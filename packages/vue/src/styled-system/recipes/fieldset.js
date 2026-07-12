@@ -1,60 +1,59 @@
-import {
-  compact,
-  getSlotCompoundVariant,
-  memo,
-  splitProps,
-} from "../helpers.js"
-import { createRecipe } from "./create-recipe.js"
+import { compact, getSlotCompoundVariant, memo, splitProps } from '../helpers.js';
+import { createRecipe } from './create-recipe.js';
 
 const fieldsetDefaultVariants = {
-  size: "md",
+  "size": "md"
 }
 const fieldsetCompoundVariants = []
 
 const fieldsetSlotNames = [
-  ["root", "fieldset__root"],
-  ["errorText", "fieldset__errorText"],
-  ["helperText", "fieldset__helperText"],
-  ["legend", "fieldset__legend"],
-  ["content", "fieldset__content"],
-]
-const fieldsetSlotFns = /* @__PURE__ */ fieldsetSlotNames.map(
-  ([slotName, slotKey]) => [
-    slotName,
-    createRecipe(
-      slotKey,
-      fieldsetDefaultVariants,
-      getSlotCompoundVariant(fieldsetCompoundVariants, slotName),
-    ),
+  [
+    "root",
+    "fieldset__root"
   ],
-)
+  [
+    "errorText",
+    "fieldset__errorText"
+  ],
+  [
+    "helperText",
+    "fieldset__helperText"
+  ],
+  [
+    "legend",
+    "fieldset__legend"
+  ],
+  [
+    "content",
+    "fieldset__content"
+  ]
+]
+const fieldsetSlotFns = /* @__PURE__ */ fieldsetSlotNames.map(([slotName, slotKey]) => [slotName, createRecipe(slotKey, fieldsetDefaultVariants, getSlotCompoundVariant(fieldsetCompoundVariants, slotName))])
 
 const fieldsetFn = memo((props = {}) => {
-  return Object.fromEntries(
-    fieldsetSlotFns.map(([slotName, slotFn]) => [
-      slotName,
-      slotFn.recipeFn(props),
-    ]),
-  )
+  return Object.fromEntries(fieldsetSlotFns.map(([slotName, slotFn]) => [slotName, slotFn.recipeFn(props)]))
 })
 
-const fieldsetVariantKeys = ["size"]
-const getVariantProps = (variants) => ({
-  ...fieldsetDefaultVariants,
-  ...compact(variants),
-})
+const fieldsetVariantKeys = [
+  "size"
+]
+const getVariantProps = (variants) => ({ ...fieldsetDefaultVariants, ...compact(variants) })
 
 export const fieldset = /* @__PURE__ */ Object.assign(fieldsetFn, {
   __recipe__: false,
-  __name__: "fieldset",
+  __name__: 'fieldset',
   raw: (props) => props,
   classNameMap: {},
   variantKeys: fieldsetVariantKeys,
   variantMap: {
-    size: ["sm", "md", "lg"],
-  },
+  "size": [
+    "sm",
+    "md",
+    "lg"
+  ]
+},
   splitVariantProps(props) {
     return splitProps(props, fieldsetVariantKeys)
   },
-  getVariantProps,
+  getVariantProps
 })

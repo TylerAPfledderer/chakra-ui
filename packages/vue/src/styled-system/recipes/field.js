@@ -1,64 +1,74 @@
-import {
-  compact,
-  getSlotCompoundVariant,
-  memo,
-  splitProps,
-} from "../helpers.js"
-import { createRecipe } from "./create-recipe.js"
+import { compact, getSlotCompoundVariant, memo, splitProps } from '../helpers.js';
+import { createRecipe } from './create-recipe.js';
 
 const fieldDefaultVariants = {
-  orientation: "vertical",
+  "orientation": "vertical"
 }
 const fieldCompoundVariants = []
 
 const fieldSlotNames = [
-  ["root", "field__root"],
-  ["errorText", "field__errorText"],
-  ["helperText", "field__helperText"],
-  ["input", "field__input"],
-  ["label", "field__label"],
-  ["select", "field__select"],
-  ["textarea", "field__textarea"],
-  ["requiredIndicator", "field__requiredIndicator"],
-  ["requiredIndicator", "field__requiredIndicator"],
-]
-const fieldSlotFns = /* @__PURE__ */ fieldSlotNames.map(
-  ([slotName, slotKey]) => [
-    slotName,
-    createRecipe(
-      slotKey,
-      fieldDefaultVariants,
-      getSlotCompoundVariant(fieldCompoundVariants, slotName),
-    ),
+  [
+    "root",
+    "chakra-field__root"
   ],
-)
+  [
+    "errorText",
+    "chakra-field__errorText"
+  ],
+  [
+    "helperText",
+    "chakra-field__helperText"
+  ],
+  [
+    "input",
+    "chakra-field__input"
+  ],
+  [
+    "label",
+    "chakra-field__label"
+  ],
+  [
+    "select",
+    "chakra-field__select"
+  ],
+  [
+    "textarea",
+    "chakra-field__textarea"
+  ],
+  [
+    "requiredIndicator",
+    "chakra-field__requiredIndicator"
+  ],
+  [
+    "requiredIndicator",
+    "chakra-field__requiredIndicator"
+  ]
+]
+const fieldSlotFns = /* @__PURE__ */ fieldSlotNames.map(([slotName, slotKey]) => [slotName, createRecipe(slotKey, fieldDefaultVariants, getSlotCompoundVariant(fieldCompoundVariants, slotName))])
 
 const fieldFn = memo((props = {}) => {
-  return Object.fromEntries(
-    fieldSlotFns.map(([slotName, slotFn]) => [
-      slotName,
-      slotFn.recipeFn(props),
-    ]),
-  )
+  return Object.fromEntries(fieldSlotFns.map(([slotName, slotFn]) => [slotName, slotFn.recipeFn(props)]))
 })
 
-const fieldVariantKeys = ["orientation"]
-const getVariantProps = (variants) => ({
-  ...fieldDefaultVariants,
-  ...compact(variants),
-})
+const fieldVariantKeys = [
+  "orientation"
+]
+const getVariantProps = (variants) => ({ ...fieldDefaultVariants, ...compact(variants) })
 
 export const field = /* @__PURE__ */ Object.assign(fieldFn, {
   __recipe__: false,
-  __name__: "field",
+  __name__: 'field',
   raw: (props) => props,
   classNameMap: {},
   variantKeys: fieldVariantKeys,
   variantMap: {
-    orientation: ["vertical", "horizontal"],
-  },
+  "orientation": [
+    "vertical",
+    "horizontal"
+  ]
+},
   splitVariantProps(props) {
     return splitProps(props, fieldVariantKeys)
   },
-  getVariantProps,
+  getVariantProps
 })

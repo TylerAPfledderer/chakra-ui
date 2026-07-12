@@ -1,38 +1,43 @@
-import { memo, splitProps } from "../helpers.js"
-import { createRecipe, mergeRecipes } from "./create-recipe.js"
+import { memo, splitProps } from '../helpers.js';
+import { createRecipe, mergeRecipes } from './create-recipe.js';
 
-const radiomarkFn = /* @__PURE__ */ createRecipe(
-  "radiomark",
-  {
-    variant: "solid",
-    size: "md",
-  },
-  [],
-)
+const radiomarkFn = /* @__PURE__ */ createRecipe('chakra-radiomark', {
+  "variant": "solid",
+  "size": "md"
+}, [])
 
 const radiomarkVariantMap = {
-  variant: ["solid", "subtle", "outline", "inverted"],
-  size: ["xs", "sm", "md", "lg"],
-  filled: ["true"],
+  "variant": [
+    "solid",
+    "subtle",
+    "outline",
+    "inverted"
+  ],
+  "size": [
+    "xs",
+    "sm",
+    "md",
+    "lg"
+  ],
+  "filled": [
+    "true"
+  ]
 }
 
 const radiomarkVariantKeys = Object.keys(radiomarkVariantMap)
 
-export const radiomark = /* @__PURE__ */ Object.assign(
-  memo(radiomarkFn.recipeFn),
-  {
-    __recipe__: true,
-    __name__: "radiomark",
-    __getCompoundVariantCss__: radiomarkFn.__getCompoundVariantCss__,
-    raw: (props) => props,
-    variantKeys: radiomarkVariantKeys,
-    variantMap: radiomarkVariantMap,
-    merge(recipe) {
-      return mergeRecipes(this, recipe)
-    },
-    splitVariantProps(props) {
-      return splitProps(props, radiomarkVariantKeys)
-    },
-    getVariantProps: radiomarkFn.getVariantProps,
+export const radiomark = /* @__PURE__ */ Object.assign(memo(radiomarkFn.recipeFn), {
+  __recipe__: true,
+  __name__: 'radiomark',
+  __getCompoundVariantCss__: radiomarkFn.__getCompoundVariantCss__,
+  raw: (props) => props,
+  variantKeys: radiomarkVariantKeys,
+  variantMap: radiomarkVariantMap,
+  merge(recipe) {
+    return mergeRecipes(this, recipe)
   },
-)
+  splitVariantProps(props) {
+    return splitProps(props, radiomarkVariantKeys)
+  },
+  getVariantProps: radiomarkFn.getVariantProps,
+})

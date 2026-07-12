@@ -1,13 +1,13 @@
 /* eslint-disable */
-import type { ConditionalValue } from "../types/index"
-import type { DistributiveOmit, Pretty } from "../types/system-types"
+import type { ConditionalValue } from '../types/index';
+import type { DistributiveOmit, Pretty } from '../types/system-types';
 
 interface ListVariant {
   /**
-   * @default "marker"
-   */
-  variant: "marker" | "plain"
-  align: "center" | "start" | "end"
+ * @default "marker"
+ */
+variant: "marker" | "plain"
+align: "center" | "start" | "end"
 }
 
 type ListVariantMap = {
@@ -27,10 +27,9 @@ export interface ListRecipe {
   raw: (props?: ListVariantProps) => ListVariantProps
   variantMap: ListVariantMap
   variantKeys: Array<keyof ListVariant>
-  splitVariantProps<Props extends ListVariantProps>(
-    props: Props,
-  ): [ListVariantProps, Pretty<DistributiveOmit<Props, keyof ListVariantProps>>]
+  splitVariantProps<Props extends ListVariantProps>(props: Props): [ListVariantProps, Pretty<DistributiveOmit<Props, keyof ListVariantProps>>]
   getVariantProps: (props?: ListVariantProps) => ListVariantProps
 }
+
 
 export declare const list: ListRecipe

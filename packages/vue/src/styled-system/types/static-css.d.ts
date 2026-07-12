@@ -26,9 +26,9 @@ interface RecipeRuleVariants {
 }
 
 export type RecipeRuleObject = RecipeRuleVariants & ConditionOptions
-export type RecipeRule = "*" | RecipeRuleObject
+export type RecipeRule = '*' | RecipeRuleObject
 
-export type PatternRule = "*" | CssRule
+export type PatternRule = '*' | CssRule
 
 export interface StaticCssOptions {
   /**
@@ -39,7 +39,7 @@ export interface StaticCssOptions {
    * The css recipes to generate.
    */
   recipes?:
-    | "*"
+    | '*'
     | {
         [recipe: string]: RecipeRule[]
       }

@@ -1,12 +1,12 @@
 /* eslint-disable */
-import type { ConditionalValue } from "../types/index"
-import type { DistributiveOmit, Pretty } from "../types/system-types"
+import type { ConditionalValue } from '../types/index';
+import type { DistributiveOmit, Pretty } from '../types/system-types';
 
 interface QrCodeVariant {
   /**
-   * @default "md"
-   */
-  size: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"
+ * @default "md"
+ */
+size: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"
 }
 
 type QrCodeVariantMap = {
@@ -16,9 +16,7 @@ type QrCodeVariantMap = {
 type QrCodeSlot = "root" | "frame" | "pattern" | "overlay" | "downloadTrigger"
 
 export type QrCodeVariantProps = {
-  [key in keyof QrCodeVariant]?:
-    | ConditionalValue<QrCodeVariant[key]>
-    | undefined
+  [key in keyof QrCodeVariant]?: ConditionalValue<QrCodeVariant[key]> | undefined
 }
 
 export interface QrCodeRecipe {
@@ -28,13 +26,9 @@ export interface QrCodeRecipe {
   raw: (props?: QrCodeVariantProps) => QrCodeVariantProps
   variantMap: QrCodeVariantMap
   variantKeys: Array<keyof QrCodeVariant>
-  splitVariantProps<Props extends QrCodeVariantProps>(
-    props: Props,
-  ): [
-    QrCodeVariantProps,
-    Pretty<DistributiveOmit<Props, keyof QrCodeVariantProps>>,
-  ]
+  splitVariantProps<Props extends QrCodeVariantProps>(props: Props): [QrCodeVariantProps, Pretty<DistributiveOmit<Props, keyof QrCodeVariantProps>>]
   getVariantProps: (props?: QrCodeVariantProps) => QrCodeVariantProps
 }
+
 
 export declare const qrCode: QrCodeRecipe

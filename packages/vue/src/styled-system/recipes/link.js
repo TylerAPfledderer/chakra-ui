@@ -1,23 +1,22 @@
-import { memo, splitProps } from "../helpers.js"
-import { createRecipe, mergeRecipes } from "./create-recipe.js"
+import { memo, splitProps } from '../helpers.js';
+import { createRecipe, mergeRecipes } from './create-recipe.js';
 
-const linkFn = /* @__PURE__ */ createRecipe(
-  "link",
-  {
-    variant: "plain",
-  },
-  [],
-)
+const linkFn = /* @__PURE__ */ createRecipe('chakra-link', {
+  "variant": "plain"
+}, [])
 
 const linkVariantMap = {
-  variant: ["underline", "plain"],
+  "variant": [
+    "underline",
+    "plain"
+  ]
 }
 
 const linkVariantKeys = Object.keys(linkVariantMap)
 
 export const link = /* @__PURE__ */ Object.assign(memo(linkFn.recipeFn), {
   __recipe__: true,
-  __name__: "link",
+  __name__: 'link',
   __getCompoundVariantCss__: linkFn.__getCompoundVariantCss__,
   raw: (props) => props,
   variantKeys: linkVariantKeys,

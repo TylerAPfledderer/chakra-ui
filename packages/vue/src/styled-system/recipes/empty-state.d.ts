@@ -1,12 +1,12 @@
 /* eslint-disable */
-import type { ConditionalValue } from "../types/index"
-import type { DistributiveOmit, Pretty } from "../types/system-types"
+import type { ConditionalValue } from '../types/index';
+import type { DistributiveOmit, Pretty } from '../types/system-types';
 
 interface EmptyStateVariant {
   /**
-   * @default "md"
-   */
-  size: "sm" | "md" | "lg"
+ * @default "md"
+ */
+size: "sm" | "md" | "lg"
 }
 
 type EmptyStateVariantMap = {
@@ -16,9 +16,7 @@ type EmptyStateVariantMap = {
 type EmptyStateSlot = "root" | "content" | "indicator" | "title" | "description"
 
 export type EmptyStateVariantProps = {
-  [key in keyof EmptyStateVariant]?:
-    | ConditionalValue<EmptyStateVariant[key]>
-    | undefined
+  [key in keyof EmptyStateVariant]?: ConditionalValue<EmptyStateVariant[key]> | undefined
 }
 
 export interface EmptyStateRecipe {
@@ -28,13 +26,9 @@ export interface EmptyStateRecipe {
   raw: (props?: EmptyStateVariantProps) => EmptyStateVariantProps
   variantMap: EmptyStateVariantMap
   variantKeys: Array<keyof EmptyStateVariant>
-  splitVariantProps<Props extends EmptyStateVariantProps>(
-    props: Props,
-  ): [
-    EmptyStateVariantProps,
-    Pretty<DistributiveOmit<Props, keyof EmptyStateVariantProps>>,
-  ]
+  splitVariantProps<Props extends EmptyStateVariantProps>(props: Props): [EmptyStateVariantProps, Pretty<DistributiveOmit<Props, keyof EmptyStateVariantProps>>]
   getVariantProps: (props?: EmptyStateVariantProps) => EmptyStateVariantProps
 }
+
 
 export declare const emptyState: EmptyStateRecipe

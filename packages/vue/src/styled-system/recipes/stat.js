@@ -1,56 +1,63 @@
-import {
-  compact,
-  getSlotCompoundVariant,
-  memo,
-  splitProps,
-} from "../helpers.js"
-import { createRecipe } from "./create-recipe.js"
+import { compact, getSlotCompoundVariant, memo, splitProps } from '../helpers.js';
+import { createRecipe } from './create-recipe.js';
 
 const statDefaultVariants = {
-  size: "md",
+  "size": "md"
 }
 const statCompoundVariants = []
 
 const statSlotNames = [
-  ["root", "stat__root"],
-  ["label", "stat__label"],
-  ["helpText", "stat__helpText"],
-  ["valueText", "stat__valueText"],
-  ["valueUnit", "stat__valueUnit"],
-  ["indicator", "stat__indicator"],
+  [
+    "root",
+    "chakra-stat__root"
+  ],
+  [
+    "label",
+    "chakra-stat__label"
+  ],
+  [
+    "helpText",
+    "chakra-stat__helpText"
+  ],
+  [
+    "valueText",
+    "chakra-stat__valueText"
+  ],
+  [
+    "valueUnit",
+    "chakra-stat__valueUnit"
+  ],
+  [
+    "indicator",
+    "chakra-stat__indicator"
+  ]
 ]
-const statSlotFns = /* @__PURE__ */ statSlotNames.map(([slotName, slotKey]) => [
-  slotName,
-  createRecipe(
-    slotKey,
-    statDefaultVariants,
-    getSlotCompoundVariant(statCompoundVariants, slotName),
-  ),
-])
+const statSlotFns = /* @__PURE__ */ statSlotNames.map(([slotName, slotKey]) => [slotName, createRecipe(slotKey, statDefaultVariants, getSlotCompoundVariant(statCompoundVariants, slotName))])
 
 const statFn = memo((props = {}) => {
-  return Object.fromEntries(
-    statSlotFns.map(([slotName, slotFn]) => [slotName, slotFn.recipeFn(props)]),
-  )
+  return Object.fromEntries(statSlotFns.map(([slotName, slotFn]) => [slotName, slotFn.recipeFn(props)]))
 })
 
-const statVariantKeys = ["size"]
-const getVariantProps = (variants) => ({
-  ...statDefaultVariants,
-  ...compact(variants),
-})
+const statVariantKeys = [
+  "size"
+]
+const getVariantProps = (variants) => ({ ...statDefaultVariants, ...compact(variants) })
 
 export const stat = /* @__PURE__ */ Object.assign(statFn, {
   __recipe__: false,
-  __name__: "stat",
+  __name__: 'stat',
   raw: (props) => props,
   classNameMap: {},
   variantKeys: statVariantKeys,
   variantMap: {
-    size: ["sm", "md", "lg"],
-  },
+  "size": [
+    "sm",
+    "md",
+    "lg"
+  ]
+},
   splitVariantProps(props) {
     return splitProps(props, statVariantKeys)
   },
-  getVariantProps,
+  getVariantProps
 })

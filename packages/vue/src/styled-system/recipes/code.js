@@ -1,25 +1,32 @@
-import { memo, splitProps } from "../helpers.js"
-import { createRecipe, mergeRecipes } from "./create-recipe.js"
+import { memo, splitProps } from '../helpers.js';
+import { createRecipe, mergeRecipes } from './create-recipe.js';
 
-const codeFn = /* @__PURE__ */ createRecipe(
-  "code",
-  {
-    variant: "subtle",
-    size: "sm",
-  },
-  [],
-)
+const codeFn = /* @__PURE__ */ createRecipe('chakra-code', {
+  "variant": "subtle",
+  "size": "sm"
+}, [])
 
 const codeVariantMap = {
-  variant: ["solid", "subtle", "outline", "surface", "plain"],
-  size: ["xs", "sm", "md", "lg"],
+  "variant": [
+    "solid",
+    "subtle",
+    "outline",
+    "surface",
+    "plain"
+  ],
+  "size": [
+    "xs",
+    "sm",
+    "md",
+    "lg"
+  ]
 }
 
 const codeVariantKeys = Object.keys(codeVariantMap)
 
 export const code = /* @__PURE__ */ Object.assign(memo(codeFn.recipeFn), {
   __recipe__: true,
-  __name__: "code",
+  __name__: 'code',
   __getCompoundVariantCss__: codeFn.__getCompoundVariantCss__,
   raw: (props) => props,
   variantKeys: codeVariantKeys,

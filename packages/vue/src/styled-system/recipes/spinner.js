@@ -1,23 +1,26 @@
-import { memo, splitProps } from "../helpers.js"
-import { createRecipe, mergeRecipes } from "./create-recipe.js"
+import { memo, splitProps } from '../helpers.js';
+import { createRecipe, mergeRecipes } from './create-recipe.js';
 
-const spinnerFn = /* @__PURE__ */ createRecipe(
-  "spinner",
-  {
-    size: "md",
-  },
-  [],
-)
+const spinnerFn = /* @__PURE__ */ createRecipe('chakra-spinner', {
+  "size": "md"
+}, [])
 
 const spinnerVariantMap = {
-  size: ["inherit", "xs", "sm", "md", "lg", "xl"],
+  "size": [
+    "inherit",
+    "xs",
+    "sm",
+    "md",
+    "lg",
+    "xl"
+  ]
 }
 
 const spinnerVariantKeys = Object.keys(spinnerVariantMap)
 
 export const spinner = /* @__PURE__ */ Object.assign(memo(spinnerFn.recipeFn), {
   __recipe__: true,
-  __name__: "spinner",
+  __name__: 'spinner',
   __getCompoundVariantCss__: spinnerFn.__getCompoundVariantCss__,
   raw: (props) => props,
   variantKeys: spinnerVariantKeys,

@@ -1,12 +1,12 @@
 /* eslint-disable */
-import type { ConditionalValue } from "../types/index"
-import type { DistributiveOmit, Pretty } from "../types/system-types"
+import type { ConditionalValue } from '../types/index';
+import type { DistributiveOmit, Pretty } from '../types/system-types';
 
 interface RatingGroupVariant {
   /**
-   * @default "md"
-   */
-  size: "xs" | "sm" | "md" | "lg"
+ * @default "md"
+ */
+size: "xs" | "sm" | "md" | "lg"
 }
 
 type RatingGroupVariantMap = {
@@ -16,9 +16,7 @@ type RatingGroupVariantMap = {
 type RatingGroupSlot = "root" | "label" | "item" | "control" | "itemIndicator"
 
 export type RatingGroupVariantProps = {
-  [key in keyof RatingGroupVariant]?:
-    | ConditionalValue<RatingGroupVariant[key]>
-    | undefined
+  [key in keyof RatingGroupVariant]?: ConditionalValue<RatingGroupVariant[key]> | undefined
 }
 
 export interface RatingGroupRecipe {
@@ -28,13 +26,9 @@ export interface RatingGroupRecipe {
   raw: (props?: RatingGroupVariantProps) => RatingGroupVariantProps
   variantMap: RatingGroupVariantMap
   variantKeys: Array<keyof RatingGroupVariant>
-  splitVariantProps<Props extends RatingGroupVariantProps>(
-    props: Props,
-  ): [
-    RatingGroupVariantProps,
-    Pretty<DistributiveOmit<Props, keyof RatingGroupVariantProps>>,
-  ]
+  splitVariantProps<Props extends RatingGroupVariantProps>(props: Props): [RatingGroupVariantProps, Pretty<DistributiveOmit<Props, keyof RatingGroupVariantProps>>]
   getVariantProps: (props?: RatingGroupVariantProps) => RatingGroupVariantProps
 }
+
 
 export declare const ratingGroup: RatingGroupRecipe

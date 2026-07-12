@@ -1,16 +1,16 @@
 /* eslint-disable */
-import type { ConditionalValue } from "../types/index"
-import type { DistributiveOmit, Pretty } from "../types/system-types"
+import type { ConditionalValue } from '../types/index';
+import type { DistributiveOmit, Pretty } from '../types/system-types';
 
 interface CardVariant {
   /**
-   * @default "md"
-   */
-  size: "sm" | "md" | "lg"
-  /**
-   * @default "outline"
-   */
-  variant: "elevated" | "outline" | "subtle"
+ * @default "md"
+ */
+size: "sm" | "md" | "lg"
+/**
+ * @default "outline"
+ */
+variant: "elevated" | "outline" | "subtle"
 }
 
 type CardVariantMap = {
@@ -30,10 +30,9 @@ export interface CardRecipe {
   raw: (props?: CardVariantProps) => CardVariantProps
   variantMap: CardVariantMap
   variantKeys: Array<keyof CardVariant>
-  splitVariantProps<Props extends CardVariantProps>(
-    props: Props,
-  ): [CardVariantProps, Pretty<DistributiveOmit<Props, keyof CardVariantProps>>]
+  splitVariantProps<Props extends CardVariantProps>(props: Props): [CardVariantProps, Pretty<DistributiveOmit<Props, keyof CardVariantProps>>]
   getVariantProps: (props?: CardVariantProps) => CardVariantProps
 }
+
 
 export declare const card: CardRecipe
