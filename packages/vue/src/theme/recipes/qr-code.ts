@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { qrCodeAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const qrCodeSlotRecipe = defineSlotRecipe({
   slots: qrCodeAnatomy.keys(),

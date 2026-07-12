@@ -1,4 +1,4 @@
-import { defineTextStyles } from "../styled-system"
+import { defineTextStyles } from "@pandacss/dev"
 
 export const textStyles = defineTextStyles({
   "2xs": { value: { fontSize: "2xs", lineHeight: "0.75rem" } },

@@ -1,4 +1,4 @@
-import { defineGlobalStyles } from "../styled-system"
+import { defineGlobalStyles } from "@pandacss/dev"
 
 const empty = "var(--chakra-empty,/*!*/ /*!*/)"
 

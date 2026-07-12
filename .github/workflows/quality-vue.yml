@@ -1,0 +1,99 @@
+name: Quality (Vue)
+
+on:
+  push:
+    branches:
+      - feature/**
+      - main
+    paths:
+      - "packages/vue/**"
+      - "vite.config.ts"
+      - "vitest.setup.ts"
+      - ".eslintrc*"
+      - "eslint.config.*"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/quality-vue.yml"
+  pull_request:
+    branches:
+      - feature/**
+      - main
+    paths:
+      - "packages/vue/**"
+      - "vite.config.ts"
+      - "vitest.setup.ts"
+      - ".eslintrc*"
+      - "eslint.config.*"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/quality-vue.yml"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Build @chakra-ui/vue
+        run: pnpm --filter @chakra-ui/vue build
+
+  types:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Run typecheck
+        run: pnpm --filter @chakra-ui/vue typecheck
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Run tests
+        # --passWithNoTests: packages/vue has no components/tests yet (see
+        # docs/plans/chakra-ui-vue.md's component cycle) — remove this flag
+        # once the first *.test.ts(x) file lands so the job starts actually
+        # enforcing tests instead of just checking they're runnable.
+        run: pnpm vitest run packages/vue --passWithNoTests
+
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Run ESLint
+        run: pnpm eslint packages/vue --ext .ts,.tsx --cache
+
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Run prettier
+        run: pnpm prettier --check packages/vue --cache

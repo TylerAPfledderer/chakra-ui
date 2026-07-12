@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "@pandacss/dev"
 
 export const blurs = defineTokens.blurs({
   none: { value: " " },

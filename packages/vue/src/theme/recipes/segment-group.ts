@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { segmentGroupAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const segmentGroupSlotRecipe = defineSlotRecipe({
   className: "chakra-segment-group",

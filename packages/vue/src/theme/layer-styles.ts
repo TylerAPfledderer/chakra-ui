@@ -1,4 +1,4 @@
-import { defineLayerStyles } from "../styled-system"
+import { defineLayerStyles } from "@pandacss/dev"
 
 export const layerStyles = defineLayerStyles({
   // fill: some background color + color combination

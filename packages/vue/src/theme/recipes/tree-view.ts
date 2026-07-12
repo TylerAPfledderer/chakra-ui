@@ -1,7 +1,7 @@
+import { type SystemStyleObject, defineSlotRecipe } from "@pandacss/dev"
 import { treeViewAnatomy } from "../../anatomy"
-import { defineSlotRecipe, defineStyle } from "../../styled-system"
 
-const baseItemStyle = defineStyle({
+const baseItemStyle = {
   display: "flex",
   alignItems: "center",
   gap: "var(--tree-item-gap)",
@@ -26,24 +26,24 @@ const baseItemStyle = defineStyle({
   _disabled: {
     layerStyle: "disabled",
   },
-})
+} as SystemStyleObject
 
-const baseTextStyle = defineStyle({
+const baseTextStyle = {
   flex: "1",
-})
+} as SystemStyleObject
 
-const subtleVariantStyle = defineStyle({
+const subtleVariantStyle = {
   _selected: {
     bg: "colorPalette.subtle",
     color: "colorPalette.fg",
   },
-})
+} as SystemStyleObject
 
-const solidVariantStyle = defineStyle({
+const solidVariantStyle = {
   _selected: {
     layerStyle: "fill.solid",
   },
-})
+} as SystemStyleObject
 
 export const treeViewSlotRecipe = defineSlotRecipe({
   slots: treeViewAnatomy.keys(),

@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { tableAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const tableSlotRecipe = defineSlotRecipe({
   className: "chakra-table",

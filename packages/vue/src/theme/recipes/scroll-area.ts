@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { scrollAreaAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const scrollAreaSlotRecipe = defineSlotRecipe({
   className: "chakra-scroll-area",

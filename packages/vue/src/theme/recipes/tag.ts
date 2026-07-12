@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { tagAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 import { badgeRecipe } from "./badge"
 
 const badgeVariant = badgeRecipe.variants?.variant

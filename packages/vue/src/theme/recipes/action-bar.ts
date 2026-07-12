@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { actionBarAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const actionBarSlotRecipe = defineSlotRecipe({
   className: "chakra-action-bar",

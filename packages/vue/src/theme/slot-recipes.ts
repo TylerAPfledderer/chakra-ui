@@ -94,7 +94,12 @@ export const slotRecipes = {
   splitter: splitterSlotRecipe,
   stat: statSlotRecipe,
   steps: stepsSlotRecipe,
-  switch: switchSlotRecipe,
+  // Keyed `switchControl`, not `switch` — Panda's codegen (v1.5.1) emits
+  // `export declare const <key>` verbatim from this object's keys with no
+  // reserved-word handling, and `switch` is an invalid export identifier.
+  // The generated recipe's className stays "chakra-switch" (see
+  // recipes/switch.ts), so rendered output is unaffected.
+  switchControl: switchSlotRecipe,
   table: tableSlotRecipe,
   tabs: tabsSlotRecipe,
   tag: tagSlotRecipe,

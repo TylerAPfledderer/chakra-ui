@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { listboxAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const listboxSlotRecipe = defineSlotRecipe({
   className: "chakra-listbox",

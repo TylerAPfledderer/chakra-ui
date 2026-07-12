@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { splitterAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const splitterSlotRecipe = defineSlotRecipe({
   slots: splitterAnatomy.keys(),

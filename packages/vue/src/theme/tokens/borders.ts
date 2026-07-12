@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "@pandacss/dev"
 
 export const borders = defineTokens.borders({
   xs: { value: "0.5px solid" },

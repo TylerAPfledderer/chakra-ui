@@ -4,3 +4,4 @@ coverage
 .next
 *.hbs
 generated
+packages/vue/src/styled-system

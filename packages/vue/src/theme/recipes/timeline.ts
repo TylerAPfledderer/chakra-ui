@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { timelineAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const timelineSlotRecipe = defineSlotRecipe({
   slots: timelineAnatomy.keys(),

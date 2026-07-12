@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { statusAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const statusSlotRecipe = defineSlotRecipe({
   className: "chakra-status",

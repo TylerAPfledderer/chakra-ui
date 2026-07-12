@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { popoverAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const popoverSlotRecipe = defineSlotRecipe({
   className: "chakra-popover",

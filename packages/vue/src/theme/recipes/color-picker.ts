@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { colorPickerAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 import { colorSwatchRecipe } from "./color-swatch"
 import { inputRecipe } from "./input"
 

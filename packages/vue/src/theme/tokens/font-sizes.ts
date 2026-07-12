@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "@pandacss/dev"
 
 export const fontSizes = defineTokens.fontSizes({
   "2xs": { value: "0.625rem" },

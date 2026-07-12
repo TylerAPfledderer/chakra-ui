@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { tooltipAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const tooltipSlotRecipe = defineSlotRecipe({
   slots: tooltipAnatomy.keys(),

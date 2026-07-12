@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@ark-ui/vue": "^5.29.1",
-    "@chakra-ui/panda-preset": "workspace:*",
     "@pandacss/is-valid-prop": "^1.4.2",
     "csstype": "^3.2.3"
   },
@@ -66,7 +65,7 @@
     "build:fast": "tsx ../../scripts/build/main.ts",
     "build": "tsx ../../scripts/build/main.ts --dts && pnpm cssgen",
     "dev": "pnpm build:fast --watch",
-    "clean": "rimraf dist .turbo src/panda-system",
+    "clean": "rimraf dist .turbo",
     "typecheck": "vue-tsc --noEmit",
     "mirror:react": "tsx scripts/mirror-from-react.ts"
   },

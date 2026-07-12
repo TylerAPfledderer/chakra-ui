@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { fileUploadAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const fileUploadSlotRecipe = defineSlotRecipe({
   className: "chakra-file-upload",

@@ -1,13 +1,13 @@
+import { type SystemStyleObject, defineSlotRecipe } from "@pandacss/dev"
 import { editableAnatomy } from "../../anatomy"
-import { defineSlotRecipe, defineStyle } from "../../styled-system"
 
-const sharedStyles = defineStyle({
+const sharedStyles = {
   fontSize: "inherit",
   fontWeight: "inherit",
   textAlign: "inherit",
   bg: "transparent",
   borderRadius: "l2",
-})
+} as SystemStyleObject
 
 export const editableSlotRecipe = defineSlotRecipe({
   slots: editableAnatomy.keys(),

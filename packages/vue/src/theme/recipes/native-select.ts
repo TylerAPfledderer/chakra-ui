@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { nativeSelectAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 import { selectSlotRecipe } from "./select"
 
 export const nativeSelectSlotRecipe = defineSlotRecipe({

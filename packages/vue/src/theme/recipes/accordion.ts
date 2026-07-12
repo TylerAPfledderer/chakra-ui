@@ -1,5 +1,5 @@
+import { defineSlotRecipe } from "@pandacss/dev"
 import { accordionAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
 
 export const accordionSlotRecipe = defineSlotRecipe({
   className: "chakra-accordion",
